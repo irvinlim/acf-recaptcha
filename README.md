@@ -1,24 +1,37 @@
 # ACF reCAPTCHA Field
 
-ACF custom field for Google's reCAPTCHA. 
+**[Advanced Custom Fields](http://www.advancedcustomfields.com/)** custom field type for Google's reCAPTCHA, to be used on frontend forms.
+
+![Google reCAPTCHA]
+(https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
+
+Support for ACF v4 coming soon.
 
 -----------------------
 
-### Description
+## Instructions
 
-Requires cURL to be enabled on your server, as this plugin makes use of Google's [PHP reCAPTCHA library](https://github.com/google/recaptcha). Support for ACF v4 coming soon.
+### Generating an API Key
 
-= Compatibility =
+If you haven't already, [generate your API keys first](https://www.google.com/recaptcha/admin). You will need the **site key** and **secret key**.
 
-This ACF field type is compatible with:
-* ACF 5
+### Installation and Usage
 
-### Installation
+This plugin requires cURL to be enabled on your server, as it makes use of Google's [PHP reCAPTCHA library](https://github.com/google/recaptcha).
 
-1. Copy the `acf-FIELD_NAME` folder into your `wp-content/plugins` folder
-2. Activate the reCAPTCHA plugin via the plugins admin page
-3. Create a new field via ACF and select the reCAPTCHA type
-4. Please refer to the description for more info regarding the field type settings
+1. Copy the `acf-recaptcha` folder into your `wp-content/plugins` folder
+2. Activate the plugin via the plugins admin page
+3. Create a new field via ACF and select the reCAPTCHA type (under Custom)
+4. Enter you site key and secret key into ACF options.
 
-### Changelog
-Please see `readme.txt` for changelog
+That's it! It should work out of the box, as long as your API keys are correct and valid for your domain.
+
+-----------------------
+
+## About
+
+Version 1.0
+
+Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
+
+If you have questions, contact me [here](http://services.irvinlim.com/contact.php)!
