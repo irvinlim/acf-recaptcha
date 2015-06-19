@@ -7,8 +7,6 @@
 
 Support for ACF v4 coming soon.
 
------------------------
-
 ## Instructions
 
 ### Generating an API Key
@@ -25,8 +23,6 @@ This plugin requires cURL to be enabled on your server, as it makes use of Googl
 4. Enter you site key and secret key into ACF options.
 
 That's it! It should work out of the box, as long as your API keys are correct and valid for your domain.
-
------------------------
 
 ## About
 
