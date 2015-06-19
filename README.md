@@ -30,4 +30,4 @@ Version 1.0
 
 Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
 
-If you have questions, contact me [here](http://services.irvinlim.com/contact.php)!
+If you have any other questions, contact me [here](http://services.irvinlim.com/contact.php)!
