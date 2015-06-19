@@ -9,10 +9,12 @@
 	
 		acf.add_action('ready append', function( $body ){
 			_root.$el = acf.get_field({ type : 'recaptcha'}, $body);
-			_root.fieldname = _root.$el.attr("data-key");
+			if (_root.$el) _root.fieldname = _root.$el.attr("data-key");
 		});
 		
 		acf.add_filter('validation_complete', function( json, $form ){
+
+			if (!_root.$el) return json;
 
 			var validated_error = false;
 
