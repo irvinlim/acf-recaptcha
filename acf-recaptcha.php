@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Advanced Custom Fields: reCAPTCHA Field
-Plugin URI: http://irvinlim.com/
+Plugin URI: https://github.com/irvinlim/acf-recaptcha/
 Description: Google reCAPTCHA Field for Advanced Custom Fields. See https://www.google.com/recaptcha/ for an account.
 Version: 1.0.0
 Author: Irvin Lim
