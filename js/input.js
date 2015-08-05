@@ -22,7 +22,7 @@
 				if (val.input == "acf[" + _root.fieldname + "]") {
 					validated_error = true;
 					grecaptcha.reset();
-					json.errors[index].message = "Please click the checkbox.";
+					json.errors[index].message = acf.l10n.recaptcha.error;
 				}
 			});
 

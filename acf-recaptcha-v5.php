@@ -150,6 +150,8 @@ class acf_field_recaptcha extends acf_field {
 		wp_register_script( 'acf-input-recaptcha', "{$dir}js/input.js" );
 		wp_enqueue_script('acf-input-recaptcha');
 
+		if (!is_admin()) wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js');
+
 	}
 	
 	
@@ -170,8 +172,7 @@ class acf_field_recaptcha extends acf_field {
 	*/
 		
 	function input_admin_head() {
-		if (!is_admin())
-			wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js');
+
 	}
 	
 	
