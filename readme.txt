@@ -38,5 +38,9 @@ That's it! It should work out of the box, as long as your API keys are correct a
 1. Frontend look
 
 == Changelog ==
+= 1.0.1 =
+* Support translation of error messages
+* Fix for reCAPTCHA API not being enqueued in certain themes
+
 = 1.0.0 =
 * Initial version
