@@ -42,3 +42,5 @@ $RECYCLE.BIN/
 sftp-config.json
 
 _*/
+
+.svnignore
