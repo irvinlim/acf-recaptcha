@@ -14,6 +14,7 @@
 		
 		acf.add_filter('validation_complete', function( json, $form ){
 
+			if (typeof(grecaptcha) === "undefined") return json;
 			if (!_root.$el) return json;
 
 			var validated_error = false;
