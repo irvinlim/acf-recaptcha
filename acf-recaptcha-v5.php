@@ -119,6 +119,8 @@ class acf_field_recaptcha extends acf_field {
 	*/
 	
 	function render_field( $field ) {
+		if (is_admin()) return;
+
 		if ($field['site_key'] && $field['secret_key']): ?>
 			<div class="g-recaptcha" data-sitekey="<?=$field['site_key']?>" data-callback="acf_captcha_called"></div>
 			<input type="hidden" name="<?=$field['name']?>">
