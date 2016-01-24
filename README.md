@@ -1,5 +1,7 @@
 # ACF reCAPTCHA Field
 
+**This fork has been updated with the original pending pull requests, since the original author doesn't seem to be updating anymore.**
+
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/)** custom field type for Google's No-CAPTCHA reCAPTCHA, to be used on frontend forms.
 
 ![Google reCAPTCHA]
