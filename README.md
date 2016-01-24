@@ -34,6 +34,4 @@ That's it! It should work out of the box, as long as your API keys are correct a
 
 Version 1.0
 
-Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
-
-If you have any other questions, contact me [here](http://services.irvinlim.com/contact.php)!
+Originaly written by Irvin Lim, forked by Unai Yécora and developed by the amazing community. If you encounter any issues, do open [one](https://github.com/unaiyecora/acf-recaptcha/issues/new).
