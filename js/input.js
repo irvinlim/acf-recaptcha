@@ -19,13 +19,15 @@
 
 			var validated_error = false;
 
-			$.each(json.errors, function(index, val) {
-				if (val.input == "acf[" + _root.fieldname + "]") {
-					validated_error = true;
-					grecaptcha.reset();
-					json.errors[index].message = acf.l10n.recaptcha.error;
-				}
-			});
+			if (json.errors){
+				$.each(json.errors, function(index, val) {
+					if (val.input == "acf[" + _root.fieldname + "]") {
+						validated_error = true;
+						grecaptcha.reset();
+						json.errors[index].message = acf.l10n.recaptcha.error;
+					}
+				});
+			}
 
 			if (!validated_error) _root.$el.find("input[type=hidden]").remove();
 
