@@ -48,6 +48,9 @@ class acf_field_recaptcha extends acf_field {
 		$this->defaults = array(
 			'site_key'	=> '',
 			'secret_key'	=> '',
+			're_theme'	=> 'light',
+			're_type'	=> 'image',
+			're_size'	=> 'normal',
 		);
 		
 		$this->l10n = array(
@@ -98,6 +101,39 @@ class acf_field_recaptcha extends acf_field {
 			'name'			=> 'secret_key',
 			'required'	=> true,
 		));
+                
+                acf_render_field_setting( $field, array(
+                        'label'        => __('Theme','acf-recaptcha'), 
+                        'type'         => 'radio', 
+                        'name'         => 're_theme', 
+                        'layout'       => 'horizontal', 
+                        'choices'      => array(
+                            'light' => __( 'light' ), 
+                            'dark' => __( 'dark' ), 
+                        ), 
+                ));
+                
+                acf_render_field_setting( $field, array(
+                        'label'        => __('Type','acf-recaptcha'), 
+                        'type'         => 'radio', 
+                        'name'         => 're_type', 
+                        'layout'       => 'horizontal', 
+                        'choices'      => array(
+                            'image' => __( 'image' ), 
+                            'audio' => __( 'audio' ), 
+                        ), 
+                ));
+                
+                acf_render_field_setting( $field, array(
+                        'label'        => __('Size','acf-recaptcha'), 
+                        'type'         => 'radio', 
+                        'name'         => 're_size', 
+                        'layout'       => 'horizontal', 
+                        'choices'      => array(
+                            'normal' => __( 'normal' ), 
+                            'compact' => __( 'compact' ), 
+                        ), 
+                ));
 
 	}
 	
@@ -120,10 +156,10 @@ class acf_field_recaptcha extends acf_field {
 	
 	function render_field( $field ) {
 		if (is_admin()) return;
-
+                
 		if ($field['site_key'] && $field['secret_key']): ?>
-			<div class="g-recaptcha" data-sitekey="<?=$field['site_key']?>" data-callback="acf_captcha_called"></div>
-			<input type="hidden" name="<?=$field['name']?>">
+                        <div class="g-recaptcha" data-sitekey="<?php echo $field['site_key'];?>" data-theme="<?php echo $field['re_theme'];?>" data-type="<?php echo $field['re_type'];?>" data-size="<?php echo $field['re_size'];?>" data-callback="acf_captcha_called"></div>
+			<input type="hidden" name="<?php echo $field['name']?>">
 		<?php else :
 			echo "Please enter your site key and secret key first.";
 		endif;
@@ -214,3 +250,4 @@ class acf_field_recaptcha extends acf_field {
 new acf_field_recaptcha();
 
 ?>
+
