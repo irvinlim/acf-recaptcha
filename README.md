@@ -2,6 +2,10 @@
 
 **This fork has been updated with the original pending pull requests, since the original author doesn't seem to be updating anymore.**
 
+**[Download it from the WordPress plugin repository.](https://wordpress.org/plugins/acf-recaptcha/)**
+
+---
+
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/)** custom field type for Google's No-CAPTCHA reCAPTCHA, to be used on frontend forms.
 
 ![Google reCAPTCHA]

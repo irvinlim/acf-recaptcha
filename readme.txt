@@ -1,5 +1,5 @@
 === ACF reCAPTCHA ===
-Contributors: unaiyecora, okdek88, irvinlim
+Contributors: okdek88, irvinlim
 Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: http://unaiyecora.com
 Requires at least: 3.0.1
