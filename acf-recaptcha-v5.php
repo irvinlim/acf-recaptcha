@@ -3,8 +3,8 @@
 require("lib/autoload.php");
 
 class acf_field_recaptcha extends acf_field {
-	
-	
+
+
 	/*
 	*  __construct
 	*
@@ -17,34 +17,34 @@ class acf_field_recaptcha extends acf_field {
 	*  @param	n/a
 	*  @return	n/a
 	*/
-	
+
 	function __construct() {
-		
+
 		/*
 		*  name (string) Single word, no spaces. Underscores allowed
 		*/
-		
+
 		$this->name = 'recaptcha';
-		
-		
+
+
 		/*
 		*  label (string) Multiple words, can include spaces, visible when selecting a field type
 		*/
-		
+
 		$this->label = __('reCAPTCHA', 'acf-recaptcha');
-		
-		
+
+
 		/*
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
-		
+
 		$this->category = 'Custom';
-		
-		
+
+
 		/*
 		*  defaults (array) Array of default settings which are merged into the field object. These are used later in settings
 		*/
-		
+
 		$this->defaults = array(
 			'site_key'	=> '',
 			'secret_key'	=> '',
@@ -52,17 +52,17 @@ class acf_field_recaptcha extends acf_field {
 			're_type'	=> 'image',
 			're_size'	=> 'normal',
 		);
-		
+
 		$this->l10n = array(
 			'error'	=> __('Please click the checkbox.', 'acf-recaptcha'),
 		);
-				
+
 		// do not delete!
     	parent::__construct();
-    	
+
 	}
-	
-	
+
+
 	/*
 	*  render_field_settings()
 	*
@@ -75,9 +75,9 @@ class acf_field_recaptcha extends acf_field {
 	*  @param	$field (array) the $field being edited
 	*  @return	n/a
 	*/
-	
+
 	function render_field_settings( $field ) {
-		
+
 		/*
 		*  acf_render_field_setting
 		*
@@ -87,58 +87,58 @@ class acf_field_recaptcha extends acf_field {
 		*  More than one setting can be added by copy/paste the above code.
 		*  Please note that you must also have a matching $defaults value for the field name (font_size)
 		*/
-		
+
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Site Key','acf-recaptcha'),
 			'instructions'	=> __('Enter your site key from Google reCAPTCHA.','acf-recaptcha'),
 			'name'			=> 'site_key',
 			'required'	=> true,
 		));
-		
+
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Secret Key','acf-recaptcha'),
 			'instructions'	=> __('Enter your secret key from Google reCAPTCHA.','acf-recaptcha'),
 			'name'			=> 'secret_key',
 			'required'	=> true,
 		));
-                
-                acf_render_field_setting( $field, array(
-                        'label'        => __('Theme','acf-recaptcha'), 
-                        'type'         => 'radio', 
-                        'name'         => 're_theme', 
-                        'layout'       => 'horizontal', 
-                        'choices'      => array(
-                            'light' => __( 'light' ), 
-                            'dark' => __( 'dark' ), 
-                        ), 
-                ));
-                
-                acf_render_field_setting( $field, array(
-                        'label'        => __('Type','acf-recaptcha'), 
-                        'type'         => 'radio', 
-                        'name'         => 're_type', 
-                        'layout'       => 'horizontal', 
-                        'choices'      => array(
-                            'image' => __( 'image' ), 
-                            'audio' => __( 'audio' ), 
-                        ), 
-                ));
-                
-                acf_render_field_setting( $field, array(
-                        'label'        => __('Size','acf-recaptcha'), 
-                        'type'         => 'radio', 
-                        'name'         => 're_size', 
-                        'layout'       => 'horizontal', 
-                        'choices'      => array(
-                            'normal' => __( 'normal' ), 
-                            'compact' => __( 'compact' ), 
-                        ), 
-                ));
+
+    acf_render_field_setting( $field, array(
+            'label'        => __('Theme','acf-recaptcha'),
+            'type'         => 'radio',
+            'name'         => 're_theme',
+            'layout'       => 'horizontal',
+            'choices'      => array(
+                'light' => __( 'light' ),
+                'dark' => __( 'dark' ),
+            ),
+    ));
+
+    acf_render_field_setting( $field, array(
+            'label'        => __('Type','acf-recaptcha'),
+            'type'         => 'radio',
+            'name'         => 're_type',
+            'layout'       => 'horizontal',
+            'choices'      => array(
+                'image' => __( 'image' ),
+                'audio' => __( 'audio' ),
+            ),
+    ));
+
+    acf_render_field_setting( $field, array(
+            'label'        => __('Size','acf-recaptcha'),
+            'type'         => 'radio',
+            'name'         => 're_size',
+            'layout'       => 'horizontal',
+            'choices'      => array(
+                'normal' => __( 'normal' ),
+                'compact' => __( 'compact' ),
+            ),
+    ));
 
 	}
-	
-	
-	
+
+
+
 	/*
 	*  render_field()
 	*
@@ -153,19 +153,19 @@ class acf_field_recaptcha extends acf_field {
 	*  @param	$field (array) the $field being edited
 	*  @return	n/a
 	*/
-	
+
 	function render_field( $field ) {
 		if (is_admin()) return;
-                
+
 		if ($field['site_key'] && $field['secret_key']): ?>
-                        <div class="g-recaptcha" data-sitekey="<?php echo $field['site_key'];?>" data-theme="<?php echo $field['re_theme'];?>" data-type="<?php echo $field['re_type'];?>" data-size="<?php echo $field['re_size'];?>" data-callback="acf_captcha_called"></div>
+      <div class="g-recaptcha" data-sitekey="<?php echo $field['site_key'];?>" data-theme="<?php echo $field['re_theme'];?>" data-type="<?php echo $field['re_type'];?>" data-size="<?php echo $field['re_size'];?>" data-callback="acf_captcha_called"></div>
 			<input type="hidden" name="<?php echo $field['name']?>">
 		<?php else :
 			echo "Please enter your site key and secret key first.";
 		endif;
 	}
-	
-		
+
+
 	/*
 	*  input_admin_enqueue_scripts()
 	*
@@ -180,10 +180,10 @@ class acf_field_recaptcha extends acf_field {
 	*  @return	n/a
 	*/
 
-	
-	
+
+
 	function input_admin_enqueue_scripts() {
-		
+
 		$dir = plugin_dir_url( __FILE__ );
 		wp_register_script( 'acf-input-recaptcha', "{$dir}js/input.js" );
 		wp_enqueue_script('acf-input-recaptcha');
@@ -191,10 +191,10 @@ class acf_field_recaptcha extends acf_field {
 		if (!is_admin()) wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js');
 
 	}
-	
-	
-	
-	
+
+
+
+
 	/*
 	*  input_admin_head()
 	*
@@ -208,12 +208,12 @@ class acf_field_recaptcha extends acf_field {
 	*  @param	n/a
 	*  @return	n/a
 	*/
-		
+
 	function input_admin_head() {
 
 	}
-	
-	
+
+
 	/*
 	*  validate_value()
 	*
@@ -231,9 +231,9 @@ class acf_field_recaptcha extends acf_field {
 	*  @param	$input (string) the corresponding input name for $_POST value
 	*  @return	$valid
 	*/
-	
-	
-	
+
+
+
 	function validate_value( $valid, $value, $field, $input ){
 		if (!strlen($value)) return false;
 
@@ -241,8 +241,8 @@ class acf_field_recaptcha extends acf_field {
 		$response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
 		return $response->isSuccess();
 	}
-	
-	
+
+
 }
 
 
@@ -250,4 +250,3 @@ class acf_field_recaptcha extends acf_field {
 new acf_field_recaptcha();
 
 ?>
-

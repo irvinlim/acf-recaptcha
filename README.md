@@ -1,4 +1,4 @@
-# ACF reCAPTCHA Field
+# ACF reCAPTCHA
 
 **This fork has been updated with the original pending pull requests, since the original author doesn't seem to be updating anymore.**
 
