@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: reCAPTCHA Field
 Plugin URI: https://github.com/irvinlim/acf-recaptcha/
 Description: Google reCAPTCHA Field for Advanced Custom Fields. See <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a> for an account.
-Version: 1.0.2
+Version: 1.0.3
 Author: Irvin Lim
 Author URI: http://irvinlim.com
 License: GPLv2 or later
@@ -30,7 +30,7 @@ add_action('acf/include_field_types', 'include_field_types_recaptcha');
 
 
 /* 
- * ACF 4 support coming soon!
+ * ACF 4 not supported yet!
  */
 
 /*function register_fields_recaptcha() {
