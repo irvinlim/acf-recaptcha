@@ -28,6 +28,24 @@ This plugin requires cURL to be enabled on your server, as it makes use of Googl
 
 That's it! It should work out of the box, as long as your API keys are correct and valid for your domain.
 
+### ACF PHP API
+
+If you are using ACF via the [PHP API](https://www.advancedcustomfields.com/resources/register-fields-via-php/), this is an example to add the reCAPTCHA field:
+
+```php
+acf_add_local_field(array(
+  'key' => 'field_recaptcha',
+  'name' => 'recaptcha',
+  'type' => 'recaptcha',
+  'label' => 'Prove your humanity',
+  'site_key'	=> 'SOME_VALID_RECAPTCHA_KEY',
+  'secret_key'	=> 'SOME_VALID_RECAPTCHA_SITE_SECRET',
+  're_theme' => 'light', // Other options: 'dark'
+  're_type'	=> 'image', // Other options: 'audio'
+  're_size'	=> 'normal', // Other options: 'compact'
+));
+```
+
 ## About
 
 Version 1.0
