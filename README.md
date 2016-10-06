@@ -30,9 +30,10 @@ That's it! It should work out of the box, as long as your API keys are correct a
 
 ### ACF PHP API
 
-If you are using ACF via PHP API (https://www.advancedcustomfields.com/resources/register-fields-via-php/) this is a sample code for reCaptha field:
+If you are using ACF via the [PHP API](https://www.advancedcustomfields.com/resources/register-fields-via-php/), this is an example to add the reCAPTCHA field:
+
 ```php
-array (
+acf_add_local_field(array(
   'key' => 'field_recaptcha',
   'name' => 'recaptcha',
   'type' => 'recaptcha',
@@ -42,7 +43,7 @@ array (
   're_theme' => 'light', // Other options: 'dark'
   're_type'	=> 'image', // Other options: 'audio'
   're_size'	=> 'normal', // Other options: 'compact'
-),
+));
 ```
 
 ## About
