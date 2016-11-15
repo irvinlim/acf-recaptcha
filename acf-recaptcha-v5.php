@@ -260,6 +260,3 @@ class acf_field_recaptcha extends acf_field {
 
 // create field
 new acf_field_recaptcha();
-
-?>
-
