@@ -5,8 +5,6 @@
 ![Google reCAPTCHA]
 (https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
 
-Support for ACF v4 coming soon.
-
 ## About No-CAPTCHA reCAPTCHA
 
 You can find more information on reCAPTCHA [here](https://www.google.com/recaptcha/intro/index.html). Google introduced a new form of CAPTCHA in 2013 that proved to be easier to solve by humans yet considerably harder for bots to bypass, by introducing a simple checkbox which is all that's needed for humans to pass the verification.
@@ -48,7 +46,7 @@ acf_add_local_field(array(
 
 ## About
 
-Version 1.0
+Version 1.0.4
 
 Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
 

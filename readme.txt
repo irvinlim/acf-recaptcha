@@ -4,7 +4,7 @@ Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: https://irvinlim.com/contact?subject=Donations
 Requires at least: 3.0.1
 Tested up to: 4.6.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ That's it! It should work out of the box, as long as your API keys are correct a
 1. Frontend look
 
 == Changelog ==
+= 1.0.4 =
+* Fix WSOD errors
+
 = 1.0.3 =
 * Added fixes for some issues
 
