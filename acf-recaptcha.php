@@ -40,8 +40,3 @@ add_action('acf/include_field_types', 'include_field_types_recaptcha');
 }
 
 add_action('acf/register_fields', 'register_fields_recaptcha');	*/
-
-
-
-	
-?>
