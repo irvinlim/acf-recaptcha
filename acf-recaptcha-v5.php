@@ -58,7 +58,7 @@ class acf_field_recaptcha extends acf_field {
 		);
 				
 		// do not delete!
-    	parent::__construct();
+    		parent::__construct();
     	
 	}
 	
@@ -238,7 +238,7 @@ class acf_field_recaptcha extends acf_field {
 		if (!strlen($value)) 
 			return false;
 
-		$api = new \ReCaptcha\ReCaptcha($field['secret_key']);
+		$api = new \ReCaptcha\ReCaptcha($field['secret_key']); // FIXME : select field for request method?
 		$response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
 	  
 	  if ( $response->isSuccess() ) 
