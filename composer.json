@@ -1,0 +1,9 @@
+{
+  "name": "Advanced Custom Fields: reCAPTCHA Field",
+  "description": "Reduce spam with reCAPTCHA on your Advanced Custom Fields frontend forms. Currently only supports ACF v5.",
+  "keywords": ["wordpress", "plugin", "acf"],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.3.2"
+  }
+}
