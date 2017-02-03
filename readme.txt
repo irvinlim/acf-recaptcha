@@ -15,7 +15,7 @@ This is an add-on for the [Advanced Custom Fields](http://wordpress.org/extend/p
 
 You can find more information on Google's No-CAPTCHA reCAPTCHA [here](https://www.google.com/recaptcha/intro/index.html).
 
-This plugin does not require CuRL to be enabled on your server.
+This plugin does not require cURL to be enabled on your server.
 
 = Compatibility =
 
@@ -40,7 +40,7 @@ That's it! It should work out of the box, as long as your API keys are correct a
 
 == Changelog ==
 = 1.0.5 =
-* Set wp_remote_post method as default to POST data to google recaptcha. This removes the need for CuRL on your server as WP will select the appropriate method. Props ramonfincken
+* Set wp_remote_post method as default to POST data to google recaptcha. This removes the need for cURL on your server as WP will select the appropriate method. Props ramonfincken
 
 = 1.0.4 =
 * Fix WSOD errors

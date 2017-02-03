@@ -1,6 +1,7 @@
 <?php
 
-require("lib/autoload.php");
+require("lib/autoload.php"); // External libraries/vendors
+require('WP_requestmethod.php'); // Our library
 
 class acf_field_recaptcha extends acf_field {
 	
@@ -231,27 +232,23 @@ class acf_field_recaptcha extends acf_field {
 	*  @param	$input (string) the corresponding input name for $_POST value
 	*  @return	$valid
 	*/
-	
-	
-	
 	function validate_value( $valid, $value, $field, $input ){
 		if (!strlen($value)) 
 			return false;
 
-		$api = new \ReCaptcha\ReCaptcha($field['secret_key']); // FIXME : select field for request method?
+		$api = new \ReCaptcha\ReCaptcha($field['secret_key'], new \ReCaptcha\RequestMethod\WP_remote());
 		$response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
 	  
-	  if ( $response->isSuccess() ) 
-	  	return $valid;
+		if ( $response->isSuccess() ) 
+			return $valid;
 
-	  $errors = $response->getErrorCodes();
-	  
-	  if ( empty( $errors ) ) 
-	  	return $valid;
-	  
-	  $valid = 'Invalid reCaptcha value ' . $value . ' response isSuccess(): ' . ( $response->isSuccess() ? 'true' : 'false' ) . ' errors: ' . json_encode($errors);
-	  
-	  return $valid;
+		$errors = $response->getErrorCodes();
+		  
+		if ( empty( $errors ) ) 
+			return $valid;
+		  
+		$valid = 'Invalid reCaptcha value ' . $value . ' response isSuccess(): ' . ( $response->isSuccess() ? 'true' : 'false' ) . ' errors: ' . json_encode($errors);
+		return $valid;
 	}
 	
 	
