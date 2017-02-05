@@ -44,12 +44,14 @@ acf_add_local_field(array(
 
 ## About
 
-Version 1.0.6
+Version 1.0.5
 
 Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
 
-If you have any other questions, contact me [here](http://services.irvinlim.com/contact.php)!
+If you have any other questions, contact me [here](https://irvinlim.com/contact/)!
 
 ## Contributors
-* WordPress plugin written by Irvin Lim (Plugin author)
-* WordPress wp_remote_post usage written by Ramon Fincken (1.0.5)
+- **[Irvin Lim](https://irvinlim.com)**: Plugin author
+- **[Sam Scholfield](https://github.com/samscholfield)**: Bugfix ([#4](https://github.com/irvinlim/acf-recaptcha/pull/4))
+- **[Matteo Tagliatti](https://github.com/puntonero)**: Added more render parameters ([#5](https://github.com/irvinlim/acf-recaptcha/pull/5))
+- **[Ramon Fincken](https://github.com/ramonfincken)**: `wp_remote_post` support added (v1.0.5)
