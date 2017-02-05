@@ -17,8 +17,6 @@ If you haven't already, [generate your API keys first](https://www.google.com/re
 
 ### Installation and Usage
 
-This plugin requires cURL to be enabled on your server, as it makes use of Google's [PHP library](https://github.com/google/recaptcha).
-
 1. Copy the `acf-recaptcha` folder into your `wp-content/plugins` folder
 2. Activate the plugin via the plugins admin page
 3. Create a new field via ACF and select the reCAPTCHA type (under Custom)
@@ -46,8 +44,12 @@ acf_add_local_field(array(
 
 ## About
 
-Version 1.0.4
+Version 1.0.6
 
 Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
 
 If you have any other questions, contact me [here](http://services.irvinlim.com/contact.php)!
+
+## Contributors
+* WordPress plugin written by Irvin Lim (Plugin author)
+* WordPress wp_remote_post usage written by Ramon Fincken (1.0.5)
