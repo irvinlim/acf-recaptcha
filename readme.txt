@@ -15,7 +15,9 @@ This is an add-on for the [Advanced Custom Fields](http://wordpress.org/extend/p
 
 You can find more information on Google's No-CAPTCHA reCAPTCHA [here](https://www.google.com/recaptcha/intro/index.html).
 
-This plugin does not require cURL to be enabled on your server (from version 1.0.5 onwards).
+This plugin *does not* require cURL to be enabled on your server (from version 1.0.5 onwards).
+
+To report a bug or request support, you can do so at at the [GitHub repository](https://github.com/irvinlim/acf-recaptcha).
 
 = Compatibility =
 
@@ -25,8 +27,6 @@ This ACF field type is compatible with:
 
 == Installation ==
 If you haven't already, [generate your API keys first](https://www.google.com/recaptcha/admin). You will need the **site key** and **secret key**.
-
-This plugin requires cURL to be enabled on your server, as it makes use of Google's [PHP library](https://github.com/google/recaptcha).
 
 1. Copy the `acf-recaptcha` folder into your `wp-content/plugins` folder.
 2. Activate the plugin via the plugins admin page.
