@@ -2,8 +2,7 @@
 
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/)** custom field type for Google's No-CAPTCHA reCAPTCHA, to be used on frontend forms.
 
-![Google reCAPTCHA]
-(https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
+![Google reCAPTCHA](https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
 
 ## About No-CAPTCHA reCAPTCHA
 
