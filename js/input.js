@@ -5,7 +5,7 @@
 
     var _super = $.extend({}, acf.conditional_logic);
 
-    acf.conditional_logic = acf.conditional_logic.extend({
+    acf.conditional_logic = $.extend(acf.conditional_logic, {
         calculate: function(rule, $trigger, $target) {
             var type = $trigger.data('type');
 
