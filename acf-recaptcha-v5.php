@@ -199,7 +199,7 @@ class acf_field_recaptcha extends acf_field {
 
         // Enqueue 'field-group-edit' script only when editing field group.
         if (is_admin()) {
-            wp_enqueue_script('recaptcha-field-group-edit', "{$dir}js/field-group-edit.js");
+            wp_enqueue_script('recaptcha-field-group-edit', "{$dir}js/field-group.js");
         }
 
     }
