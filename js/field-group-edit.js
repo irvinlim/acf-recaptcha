@@ -7,6 +7,6 @@
 
         // Set 'data-type' of the field to be 'radio', just for this page.
         // Allows other fields to apply conditional logic to this field.
-        $fieldSettings.attr("data-type", "radio");
+        $fieldSettings.attr("data-type", "true_false");
     });
 })(jQuery);

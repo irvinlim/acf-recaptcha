@@ -138,14 +138,6 @@ class acf_field_recaptcha extends acf_field {
             ),
         ));
 
-        // Add a 'choices' textarea to simulate a radio field for conditional logic.
-        acf_render_field_setting($field, array(
-            'label' => __('Validated', 'acf-recaptcha'),
-            'type' => 'textarea',
-            'name' => 'choices',
-            'value' => "true : True\nfalse : False"
-        ));
-
     }
 
 

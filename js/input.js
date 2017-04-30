@@ -1,4 +1,20 @@
 (function($) {
+    acf.conditional_logic = acf.conditional_logic.extend({
+        calculate: function(rule, $trigger, $target) {
+            var type = $trigger.data('type');
+
+            // Return true if we are dealing with recaptcha field and it has been checked.
+            if (type === 'recaptcha') {
+                return $trigger.find('input[type=hidden]').val().length > 0;
+            }
+
+            // Otherwise, fallback to native ACF calculate().
+            return this.calculate(rule, $trigger, $target);
+        },
+    });
+})(jQuery);
+
+(function($) {
 
     var _root = this;
     var $el = null;
@@ -45,7 +61,7 @@
         });
 
     }
-    
+
 })(jQuery);
 
 function acf_captcha_called(input) {
