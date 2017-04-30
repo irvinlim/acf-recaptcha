@@ -1,7 +1,9 @@
-(function() {
+(function($) {
     if (typeof acf === 'undefined' || typeof acf.conditional_logic === 'undefined') {
         return;
     }
+
+    var _super = $.extend({}, acf.conditional_logic);
 
     acf.conditional_logic = acf.conditional_logic.extend({
         calculate: function(rule, $trigger, $target) {
@@ -13,7 +15,7 @@
             }
 
             // Otherwise, fallback to native ACF calculate().
-            return this.calculate(rule, $trigger, $target);
+            return _super.calculate(rule, $trigger, $target);
         }
     });
 })(jQuery);
