@@ -29,8 +29,7 @@ namespace ReCaptcha;
 /**
  * Method used to send the request to the service.
  */
-interface RequestMethod
-{
+interface RequestMethod {
 
     /**
      * Submit the request with the specified parameters.

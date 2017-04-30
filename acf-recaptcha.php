@@ -12,31 +12,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 
+load_plugin_textdomain('acf-recaptcha', false, dirname(plugin_basename(__FILE__)) . '/lang/');
 
 
-load_plugin_textdomain( 'acf-recaptcha', false, dirname( plugin_basename(__FILE__) ) . '/lang/' ); 
+function include_field_types_recaptcha($version) {
 
+    include_once('acf-recaptcha-v5.php');
 
-
-function include_field_types_recaptcha( $version ) {
-	
-	include_once('acf-recaptcha-v5.php');
-	
 }
 
-add_action('acf/include_field_types', 'include_field_types_recaptcha');	
-
-
-
-
-/* 
- * ACF 4 not supported yet!
- */
-
-/*function register_fields_recaptcha() {
-	
-	include_once('acf-recaptcha-v4.php');
-	
-}
-
-add_action('acf/register_fields', 'register_fields_recaptcha');	*/
+add_action('acf/include_field_types', 'include_field_types_recaptcha');
