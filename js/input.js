@@ -1,3 +1,5 @@
+/* global grecaptcha */
+
 (function($) {
     if (typeof acf === 'undefined' || typeof acf.conditional_logic === 'undefined') {
         return;
@@ -48,54 +50,63 @@
 
 (function($) {
 
-    var _root = this;
+    /** ACF field element. */
     var $el = null;
+
+    /** Field name. */
     var fieldname = "";
 
     if (typeof acf.add_action !== 'undefined') {
 
+        /**
+         * When the recaptcha field is added to the front end form, we save the element and fieldname.
+         */
         acf.add_action('ready append', function($body) {
-            _root.$el = acf.get_field({ type: 'recaptcha' }, $body);
-
-            if (_root.$el) {
-                _root.fieldname = _root.$el.attr("data-key");
+            if ($el = acf.get_field({ type: 'recaptcha' }, $body)) {
+                fieldname = $el.attr("data-key");
             }
         });
 
-        acf.add_filter('validation_complete', function(json, $form) {
+        /**
+         * Handle validation for recaptcha field type.
+         */
+        acf.add_filter('validation_complete', function(json) {
 
-            if (typeof(grecaptcha) === "undefined") {
+            // Guard against no grecaptcha or recaptcha field.
+            if (typeof(grecaptcha) === "undefined" || !$el) {
                 return json;
             }
 
-            if (!_root.$el) {
-                return json;
-            }
+            var has_validation_error = false;
 
-            var validated_error = false;
-
+            // Set error message for any recaptcha field errors.
             if (json.errors) {
                 $.each(json.errors, function(index, val) {
-                    if (val.input === "acf[" + _root.fieldname + "]") {
-                        validated_error = true;
+                    if (val.input === "acf[" + fieldname + "]") {
+                        has_validation_error = true;
                         grecaptcha.reset();
                         json.errors[index].message = acf.l10n.recaptcha.error;
                     }
                 });
             }
 
-            if (!validated_error) {
-                _root.$el.find("input[type=hidden]").remove();
+            // Removes the hidden field used by grecaptcha, in order to not save it as a field to the database.
+            if (!has_validation_error) {
+                $el.find("input[type=hidden]").remove();
             }
 
             return json;
-
         });
 
     }
 
 })(jQuery);
 
-function acf_captcha_called(input) {
-    jQuery("[data-type=recaptcha]").find("input[type=hidden]").val(input).change();
+/**
+ * Callback function invoked by grecaptcha.
+ *
+ * @param captchaValue reCaptcha session value passed by callback.
+ */
+function acf_captcha_called(captchaValue) {
+    jQuery("[data-type=recaptcha]").find("captchaValue[type=hidden]").val(captchaValue).change();
 }
