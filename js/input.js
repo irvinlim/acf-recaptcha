@@ -108,5 +108,5 @@
  * @param captchaValue reCaptcha session value passed by callback.
  */
 function acf_captcha_called(captchaValue) {
-    jQuery("[data-type=recaptcha]").find("captchaValue[type=hidden]").val(captchaValue).change();
+    jQuery("[data-type=recaptcha]").find("input[type=hidden]").val(captchaValue).change();
 }
