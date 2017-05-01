@@ -11,7 +11,12 @@
 
             // Return true if we are dealing with recaptcha field and it has been checked.
             if (type === 'recaptcha') {
-                return $trigger.find('input[type=hidden]').val().length > 0;
+                var is_operator_equals = rule.operator === "==";
+                var is_value_1 = parseInt(rule.value) === 1;
+                var show_when_checked = is_operator_equals === is_value_1; // Treat as XNOR
+                var is_field_checked = $trigger.find('input[type=hidden]').val().length > 0;
+
+                return show_when_checked === is_field_checked; // Treat as XNOR
             }
 
             // Otherwise, fallback to native ACF calculate().
