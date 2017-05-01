@@ -39,6 +39,9 @@ That's it! It should work out of the box, as long as your API keys are correct a
 1. Frontend look
 
 == Changelog ==
+= 1.0.7 =
+* Fix regression caused in 1.0.6.
+
 = 1.0.6 =
 * Add support for ACF conditional logic.
 
