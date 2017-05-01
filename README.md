@@ -43,7 +43,7 @@ acf_add_local_field(array(
 
 ## About
 
-Version 1.0.5
+Version 1.0.6
 
 Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
 

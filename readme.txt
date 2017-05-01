@@ -4,7 +4,7 @@ Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: https://irvinlim.com/contact?subject=Donations
 Requires at least: 3.0.1
 Tested up to: 4.6.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ That's it! It should work out of the box, as long as your API keys are correct a
 1. Frontend look
 
 == Changelog ==
+= 1.0.6 =
+* Add support for ACF conditional logic.
+
 = 1.0.5 =
 * Uses `wp_remote_post` method for the reCAPTCHA POST request. This removes the need for cURL on your server.
 
