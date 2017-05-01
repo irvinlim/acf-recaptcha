@@ -190,11 +190,16 @@ class acf_field_recaptcha extends acf_field {
     function input_admin_enqueue_scripts() {
 
         $dir = plugin_dir_url(__FILE__);
-        wp_register_script('acf-input-recaptcha', "{$dir}js/input.js");
+        wp_register_script('acf-input-recaptcha', "{$dir}js/input.js", array( "acf-input" ));
         wp_enqueue_script('acf-input-recaptcha');
 
         if (!is_admin()) {
             wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js');
+        }
+
+        // Enqueue 'field-group' script only when editing field group.
+        if (is_admin()) {
+            wp_enqueue_script('recaptcha-field-group', "{$dir}js/field-group.js", array( "acf-field-group" ));
         }
 
     }

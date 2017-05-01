@@ -1,4 +1,52 @@
 (function($) {
+    if (typeof acf === 'undefined' || typeof acf.conditional_logic === 'undefined') {
+        return;
+    }
+
+    /** Superclass for acf.conditional_logic. */
+    var _super = $.extend({}, acf.conditional_logic);
+
+    acf.conditional_logic = $.extend(acf.conditional_logic, {
+
+        /**
+         * Calculates if a field should be conditionally displayed based on conditional logic rules, defined in
+         * the ACF field group settings.
+         *
+         * Overrides ACF native method to include functionality for recaptcha field types.
+         *
+         * @since 1.0.6
+         *
+         * @override
+         * @param {Object} rule - Rule that was configured in the ACF field group settings.
+         * @param {string} rule.field - Target field whose value is to be matched against.
+         * @param {string} rule.operator - Either "==" or "!=".
+         * @param {string} rule.value - Value to match the field's value against, using the operator defined.
+         * @param {jQuery} $trigger - Element that triggered a potential display change.
+         * @param {jQuery} $target - Target element whose display is dependent on conditional logic.
+         * @returns {boolean}   Returns true if the target should be displayed based on the trigger and conditional
+         *                      logic rule for the target.
+         */
+        calculate: function(rule, $trigger, $target) {
+            var type = $trigger.data('type');
+
+            // Return true if we are dealing with recaptcha field and it has been checked.
+            if (type === 'recaptcha') {
+                var is_operator_equals = rule.operator === "==";
+                var is_value_1 = parseInt(rule.value) === 1;
+                var show_when_checked = is_operator_equals === is_value_1; // Treat as XNOR
+                var is_field_checked = $trigger.find('input[type=hidden]').val().length > 0;
+
+                return show_when_checked === is_field_checked; // Treat as XNOR
+            }
+
+            // Otherwise, fallback to native ACF calculate().
+            return _super.calculate(rule, $trigger, $target);
+        }
+
+    });
+})(jQuery);
+
+(function($) {
 
     var _root = this;
     var $el = null;
@@ -45,7 +93,7 @@
         });
 
     }
-    
+
 })(jQuery);
 
 function acf_captcha_called(input) {
