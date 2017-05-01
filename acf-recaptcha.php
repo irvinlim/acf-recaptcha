@@ -6,9 +6,9 @@ Plugin URI: https://github.com/irvinlim/acf-recaptcha/
 Description: Google reCAPTCHA Field for Advanced Custom Fields. See <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a> for an account.
 Version: 1.0.5
 Author: Irvin Lim
-Author URI: http://irvinlim.com
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Author URI: https://irvinlim.com
+License: MIT
+License URI: https://opensource.org/licenses/MIT
 */
 
 
