@@ -1,12 +1,14 @@
 (function($) {
+
+    /**
+     * NOTE: This is pretty hack-ish to trick ACF into displaying recaptcha field types as an option for
+     * Conditional Logic in the Field Group settings.
+     *
+     * Sets the 'data-type' of the field to be 'true_false', only on the Field Group Edit page.
+     * Allows other fields to apply conditional logic to this field.
+     */
     $(document).ready(function() {
-        var $fieldSettings = $("#acf-field-group-fields").find("[data-type=recaptcha]");
-
-        // Hide 'choices' field settings row.
-        $fieldSettings.find("tr.acf-field[data-name=choices][data-setting=recaptcha]").hide();
-
-        // Set 'data-type' of the field to be 'radio', just for this page.
-        // Allows other fields to apply conditional logic to this field.
-        $fieldSettings.attr("data-type", "true_false");
+        $("#acf-field-group-fields").find("[data-type=recaptcha]").attr("data-type", "true_false");
     });
+
 })(jQuery);
