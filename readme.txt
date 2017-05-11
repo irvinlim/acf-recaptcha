@@ -4,7 +4,7 @@ Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: https://irvinlim.com/contact?subject=Donations
 Requires at least: 3.0.1
 Tested up to: 4.7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ That's it! It should work out of the box, as long as your API keys are correct a
 1. Frontend look
 
 == Changelog ==
+= 1.0.8 =
+* Fixes bug in not allowing Options Page to save.
+
 = 1.0.7 =
 * Fix regression caused in 1.0.6.
 
