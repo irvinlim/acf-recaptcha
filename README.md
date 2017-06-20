@@ -1,18 +1,14 @@
-# ACF reCAPTCHA Field
+# ACF reCAPTCHA
 
-**[Advanced Custom Fields](http://www.advancedcustomfields.com/)** custom field type for Google's No-CAPTCHA reCAPTCHA, to be used on frontend forms.
+**ACF reCAPTCHA** is a reCAPTCHA custom field type for **[Advanced Custom Fields](http://www.advancedcustomfields.com/)**, to be used on frontend forms.
 
 ![Google reCAPTCHA](https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
-
-## About No-CAPTCHA reCAPTCHA
-
-You can find more information on reCAPTCHA [here](https://www.google.com/recaptcha/intro/index.html). Google introduced a new form of CAPTCHA in 2013 that proved to be easier to solve by humans yet considerably harder for bots to bypass, by introducing a simple checkbox which is all that's needed for humans to pass the verification.
 
 ## Instructions
 
 ### Generating an API Key
 
-If you haven't already, [generate your API keys first](https://www.google.com/recaptcha/admin). You will need the **site key** and **secret key**.
+If you haven't already, [generate your reCAPTCHA API keys](https://www.google.com/recaptcha/admin) first. You will need the **site key** and **secret key**.
 
 ### Installation and Usage
 
@@ -43,14 +39,10 @@ acf_add_local_field(array(
 
 ## About
 
-Version 1.0.7
+Current stable version: 1.1
 
-Written by Irvin Lim. If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
+Written by [Irvin Lim](https://irvinlim.com). If you encounter any issues, do open [one](https://github.com/irvinlim/acf-recaptcha/issues/new).
 
-If you have any other questions, contact me [here](https://irvinlim.com/contact/)!
+## License
 
-## Contributors
-- **[Irvin Lim](https://irvinlim.com)**: Plugin author
-- **[Sam Scholfield](https://github.com/samscholfield)**: Bugfix ([#4](https://github.com/irvinlim/acf-recaptcha/pull/4))
-- **[Matteo Tagliatti](https://github.com/puntonero)**: Added more render parameters ([#5](https://github.com/irvinlim/acf-recaptcha/pull/5))
-- **[Ramon Fincken](https://github.com/ramonfincken)**: `wp_remote_post` support added (v1.0.5)
+MIT
