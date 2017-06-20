@@ -1,4 +1,4 @@
-# <a href="https://wordpress.org/plugins/advanced-custom-fields-recaptcha-field/"><img src="https://github.com/irvinlim/acf-recaptcha/assets/icon-256x256.png"></a>
+# <a href="https://wordpress.org/plugins/advanced-custom-fields-recaptcha-field/"><img src="https://raw.githubusercontent.com/irvinlim/acf-recaptcha/master/assets/icon-256x256.png"></a>
 
 **ACF reCAPTCHA** is a reCAPTCHA custom field type for **[Advanced Custom Fields](http://www.advancedcustomfields.com/)**, to be used on frontend forms.
 
