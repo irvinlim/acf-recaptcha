@@ -50,7 +50,9 @@ If you haven't already, [generate your API keys for Google reCAPTCHA](https://ww
 That's it! It should work out of the box, as long as your API keys are correct and valid for your domain.
 
 == Screenshots ==
-1. Frontend look
+1. ACF reCAPTCHA customization in the ACF backend page. Enter your site and secret keys here.
+2. Example frontend form with ACF reCAPTCHA and conditional logic applied to the text field.
+3. Example frontend form with ACF reCAPTCHA that is solved. The conditional logic had hidden the previous field and displayed a new field here.
 
 == Changelog ==
 = 1.1 =
