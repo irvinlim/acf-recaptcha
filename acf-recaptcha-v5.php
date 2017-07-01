@@ -269,9 +269,12 @@ class acf_field_recaptcha extends acf_field {
             return $valid;
         }
 
-        $valid = 'Invalid reCaptcha value ' . $value . ' response isSuccess(): ' .
-            ($response->isSuccess() ? 'true' : 'false') . ' errors: ' . json_encode($errors);
-        return $valid;
+        // Show proper error messages, in order of precedence.
+        if (in_array('timeout-or-duplicate', $errors)) {
+            return 'Verification expired. Please check the checkbox again.';
+        } else {
+            return 'Invalid reCAPTCHA value. Please check the checkbox again or refresh the page.';
+        }
     }
 
 
