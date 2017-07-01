@@ -164,7 +164,7 @@ class acf_field_recaptcha extends acf_field {
         if ($field['site_key'] && $field['secret_key']): ?>
             <div class="g-recaptcha" data-sitekey="<?php echo $field['site_key']; ?>"
                  data-theme="<?php echo $field['re_theme']; ?>" data-type="<?php echo $field['re_type']; ?>"
-                 data-size="<?php echo $field['re_size']; ?>" data-callback="acf_captcha_called"></div>
+                 data-size="<?php echo $field['re_size']; ?>"></div>
             <input type="hidden" name="<?php echo $field['name'] ?>">
         <?php else :
             echo "Please enter your site key and secret key first.";
@@ -199,7 +199,7 @@ class acf_field_recaptcha extends acf_field {
             wp_enqueue_script('acf-input-recaptcha');
 
             // Enqueue Google's reCAPTCHA API script in the frontend.
-            wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js');
+            wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js?onload=recaptcha_onload&render=explicit');
         }
 
         // Enqueue 'field-group' script for editing field group.
