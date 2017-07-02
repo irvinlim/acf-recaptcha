@@ -8,7 +8,7 @@
 
 
 /**
- * Adds async and defer attributes to the script tag to our enqueued scripts 
+ * Adds async and defer attributes to the script tag to our enqueued scripts
  * by hooking onto the 'script_loader_tag' hook.
  *
  * Matches only handles which start with 'acf-recaptcha-' and has a '#asyncdefer'
@@ -17,6 +17,7 @@
  * @param string $tag       The HTML markup for enqueuing a script tag.
  * @param string $handle    The script's registered handle.
  * @param string $src       The source URL.
+ * @return string           The complete script tag after processing.
  */
 function acf_recaptcha_script_loader_async_defer($tag, $handle, $src) {
 
