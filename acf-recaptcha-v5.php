@@ -194,7 +194,7 @@ class acf_field_recaptcha extends acf_field {
         // Register necessary scripts.
         wp_register_script('acf-recaptcha-input', "{$dir}js/input.js", array("acf-input"));
         wp_register_script('acf-recaptcha-field-group', "{$dir}js/field-group.js", array("acf-field-group"));
-        wp_register_script('google-recaptcha-api', 'https://www.google.com/recaptcha/api.js', array("acf-recaptcha-input"));
+        wp_register_script('acf-recaptcha-grecaptcha-api', 'https://www.google.com/recaptcha/api.js#asyncdefer', array("acf-recaptcha-input"));
 
         // Enqueue frontend scripts for acf-recaptcha field.
         if (!is_admin()) {
@@ -202,7 +202,7 @@ class acf_field_recaptcha extends acf_field {
             wp_enqueue_script('acf-recaptcha-input');
 
             // Enqueue Google's reCAPTCHA API script in the frontend.
-            wp_enqueue_script('google-recaptcha-api');
+            wp_enqueue_script('acf-recaptcha-grecaptcha-api');
         }
 
         // Enqueue 'field-group' script for editing field group.
