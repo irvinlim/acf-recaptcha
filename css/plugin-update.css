@@ -1,0 +1,15 @@
+.acf-recaptcha-upgrade-notice {
+    display: block;
+    background-color: #d54e21;
+    color: #f9f9f9;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.acf-recaptcha-upgrade-notice a {
+    color: #f9f9f9;
+}
+
+.acf-recaptcha-upgrade-notice a:hover {
+    text-decoration: underline;
+}

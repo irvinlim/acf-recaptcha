@@ -190,16 +190,19 @@ class acf_field_recaptcha extends acf_field {
     function input_admin_enqueue_scripts() {
 
         $dir = plugin_dir_url(__FILE__);
-        wp_register_script('acf-input-recaptcha', "{$dir}js/input.js", array( "acf-input" ));
-        wp_register_script('recaptcha-field-group', "{$dir}js/field-group.js", array( "acf-field-group" ));
+        
+        // Register necessary scripts.
+        wp_register_script('acf-recaptcha-input', "{$dir}js/input.js", array("acf-input"));
+        wp_register_script('acf-recaptcha-field-group', "{$dir}js/field-group.js", array("acf-field-group"));
+        wp_register_script('acf-recaptcha-grecaptcha-api', 'https://www.google.com/recaptcha/api.js#asyncdefer', array("acf-recaptcha-input"));
 
         // Enqueue frontend scripts for acf-recaptcha field.
         if (!is_admin()) {
             // Enqueue input script for frontend acf-recaptcha field validation and conditional logic.
-            wp_enqueue_script('acf-input-recaptcha');
+            wp_enqueue_script('acf-recaptcha-input');
 
             // Enqueue Google's reCAPTCHA API script in the frontend.
-            wp_enqueue_script('recaptcha-api', 'https://www.google.com/recaptcha/api.js');
+            wp_enqueue_script('acf-recaptcha-grecaptcha-api');
         }
 
         // Enqueue 'field-group' script for editing field group.
@@ -208,7 +211,7 @@ class acf_field_recaptcha extends acf_field {
 
             // Only enqueue script for 'edit' and 'post-new' when `post-type` is 'acf-field-group'.
             if ($screen->post_type == 'acf-field-group') {
-                wp_enqueue_script('recaptcha-field-group');
+                wp_enqueue_script('acf-recaptcha-field-group');
             }
         }
 
