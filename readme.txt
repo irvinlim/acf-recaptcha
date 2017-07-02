@@ -4,7 +4,7 @@ Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: https://irvinlim.com/contact/
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: MIT
 License URI: https://github.com/irvinlim/acf-recaptcha/blob/master/LICENSE
 
@@ -55,6 +55,10 @@ That's it! It should work out of the box, as long as your API keys are correct a
 3. Example frontend form with ACF reCAPTCHA that is solved. The conditional logic had hidden the previous field and displayed a new field here.
 
 == Changelog ==
+= 1.1.1 =
+* Added an Upgrade Notice box for future important upgrade notices
+* Make Google reCAPTCHA API JS load asynchronously to prevent possible race conditions
+
 = 1.1 =
 * Bump to version 1.1 (no changes since 1.0.8), as the plugin was not following semantic versioning earlier. Revamped the README and added a fresh new icon to celebrate! :)
 * Summary of new features since 1.0:
