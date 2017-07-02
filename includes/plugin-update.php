@@ -10,7 +10,7 @@
 global $pagenow;
 
 /**
- * WordPress action for setting the upgrade notification message at the plugins page.
+ * WordPress hook. Appends an upgrade notification block underneath the plugin description, at the plugins page.
  * @param array $plugin_data    Array of plugin data.
  * @param array $r              Array of metadata about the plugin update.
  */
@@ -54,4 +54,3 @@ if ('plugins.php' === $pagenow) {
     // Add action to enqueue required CSS.
     add_action('admin_enqueue_scripts', 'admin_enqueue_scripts_acf_recaptcha_plugin_update');
 }
-
