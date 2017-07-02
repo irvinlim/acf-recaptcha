@@ -1,5 +1,13 @@
 <?php
 
+/** 
+ * Adds the WordPress plugin update action if we are on the plugins page.
+ *
+ * @since v1.1.1
+ */
+
+global $pagenow;
+
 /**
  * WordPress action for setting the upgrade notification message at the plugins page.
  * @param array $plugin_data    Array of plugin data.
@@ -16,4 +24,12 @@ function in_plugin_update_message($plugin_data, $r) {
 
         <?php
     }
+}
+
+if ('plugins.php' === $pagenow) {
+    $file = ACF_RECAPTCHA_BASENAME;
+    $folder = basename(ACF_RECAPTCHA_ABSPATH);
+    $hook = "in_plugin_update_message-{$folder}/{$file}";
+    
+    add_action($hook, 'in_plugin_update_message_acf_recaptcha', 20, 2);
 }
