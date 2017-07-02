@@ -12,8 +12,7 @@ License URI: https://opensource.org/licenses/MIT
 */
 
 
-define('ACF_RECAPTCHA_BASENAME', basename(__FILE__));
-define('ACF_RECAPTCHA_ABSPATH', dirname(__FILE__));
+define('ACF_RECAPTCHA_ABSPATH', __FILE__);
 
 
 /** 

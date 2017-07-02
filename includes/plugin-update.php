@@ -1,7 +1,8 @@
 <?php
 
 /** 
- * Adds the WordPress plugin update action if we are on the plugins page.
+ * Displays a prominent notification at the plugins page for WordPress plugin Upgrade Notices.
+ * Credits: https://andidittrich.de/2015/05/howto-upgrade-notice-for-wordpress-plugins.html
  *
  * @since v1.1.1
  */
@@ -15,21 +16,42 @@ global $pagenow;
  */
 function in_plugin_update_message_acf_recaptcha($plugin_data, $r) { 
     if (isset($r->upgrade_notice) && strlen(trim($r->upgrade_notice)) > 0) {
+
+        // Sanitize the text, only allow links.
+        $notice = wp_kses($r->upgrade_notice, array(
+            'a' => array(
+                'href' => array(), 
+                'title' => array()
+            )
+        ));
+
         ?>
 
-        <span style="display: block; background-color: #d54e21; padding: 10px; color: #f9f9f9; margin: 10px 0">
+        <span class="acf-recaptcha-upgrade-notice">
             <strong>Upgrade Notice:</strong>
-            <?php echo esc_html($r->upgrade_notice); ?>
+            <?php echo $notice; ?>
         </span>
 
         <?php
     }
 }
 
+/**
+ * WordPress hook. Enqueues required plugin upgrade CSS.
+ */
+function admin_enqueue_scripts_acf_recaptcha_plugin_update() {
+    wp_enqueue_style('acf-recaptcha-css-plugin-update', plugins_url('css/plugin-update.css', ACF_RECAPTCHA_ABSPATH));
+}
+
 if ('plugins.php' === $pagenow) {
-    $file = ACF_RECAPTCHA_BASENAME;
-    $folder = basename(ACF_RECAPTCHA_ABSPATH);
+    $file = basename(ACF_RECAPTCHA_ABSPATH);
+    $folder = basename(dirname(ACF_RECAPTCHA_ABSPATH));
     $hook = "in_plugin_update_message-{$folder}/{$file}";
     
+    // Add action to display the notification block.
     add_action($hook, 'in_plugin_update_message_acf_recaptcha', 20, 2);
+
+    // Add action to enqueue required CSS.
+    add_action('admin_enqueue_scripts', 'admin_enqueue_scripts_acf_recaptcha_plugin_update');
 }
+
