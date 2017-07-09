@@ -91,9 +91,9 @@
             }
 
             // Removes the hidden field used by grecaptcha, in order to not save it as a field to the database.
-            if (!has_validation_error) {
-                $el.find("input[type=hidden]").remove();
-            }
+            // if (!has_validation_error) {
+            //     $el.find("input[type=hidden]").remove();
+            // }
 
             return json;
         });

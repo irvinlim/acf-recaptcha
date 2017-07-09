@@ -266,25 +266,16 @@ class acf_field_recaptcha extends acf_field {
     *  @return	$valid
     */
     function validate_value($valid, $value, $field, $input) {
+        // Only process AJAX client-side validation requests.
+        if (!is_admin()) {
+            return $valid;
+        }
+
+        // All reCAPTCHA fields should be required by default.
         if (!strlen($value)) {
             return false;
         }
 
-        $api = new \ReCaptcha\ReCaptcha($field['secret_key'], new \ReCaptcha\RequestMethod\WP_remote());
-        $response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
-
-        if ($response->isSuccess()) {
-            return $valid;
-        }
-
-        $errors = $response->getErrorCodes();
-
-        if (empty($errors)) {
-            return $valid;
-        }
-
-        $valid = 'Invalid reCaptcha value ' . $value . ' response isSuccess(): ' .
-            ($response->isSuccess() ? 'true' : 'false') . ' errors: ' . json_encode($errors);
         return $valid;
     }
 
@@ -317,10 +308,61 @@ class acf_field_recaptcha extends acf_field {
             return;
         }
 
-        // TODO: Find all fields with type=recaptcha in $_POST, and call Google's reCAPTCHA API to validate the value.
+        // Validate the reCAPTCHA-protected form.
+        if (!$this->validate_recaptcha_form()) {
+            acf_add_validation_error('', __('reCAPTCHA value is invalid.', 'acf-recaptcha'));
+        }
+     }
 
-        // Fail if any of the fields whose type is recaptcha have an invalid value, or if we didn't find any such fields.
-        acf_add_validation_error('', __('reCAPTCHA value is invalid.', 'acf-recaptcha'));
+    /**
+     * Validates a reCAPTCHA-protected form. This means that there must be at least one reCAPTCHA field in the posted
+     * form data, and all reCAPTCHA values posted must be valid.
+     *
+     * @return bool     Returns true if the above conditions hold true.
+     */
+    function validate_recaptcha_form() {
+        // Maintain a flag for whether we have found a reCAPTCHA field in $_POST.
+        $has_found_recaptcha = false;
+
+        // Validate the value of every reCAPTCHA field in $_POST.
+        foreach ($_POST['acf'] as $field_key => $value) {
+            $field = acf_get_field($field_key);
+
+            if ($field['type'] == 'recaptcha') {
+                $has_found_recaptcha = true;
+
+                if (!$this->validate_recaptcha_value($field, $value)) {
+                    return false;
+                }
+            }
+        }
+
+        // Fail validation if we didn't find any reCAPTCHA fields.
+        if (!$has_found_recaptcha) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Validates a given reCAPTCHA value with the Google reCAPTCHA PHP API.
+     *
+     * This method is not idempotent - Google's API will only validate a value once, and fail subsequent validations
+     * with the same reCAPTCHA value.
+     *
+     * @param $field array      Array of field settings for a reCAPTCHA field.
+     * @param $value string     Posted reCAPTCHA value.
+     * @return boolean          Returns true if the value is valid.
+     */
+    function validate_recaptcha_value($field, $value) {
+        // Prepare the API.
+        $api = new \ReCaptcha\ReCaptcha($field['secret_key'], new \ReCaptcha\RequestMethod\WP_remote());
+
+        // Verify the value, with the IP address of the visitor (if server is not behind a proxy).
+        $response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
+
+        return $response->isSuccess();
     }
 
     /**
