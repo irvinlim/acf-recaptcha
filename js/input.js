@@ -85,7 +85,7 @@
                     if (val.input === "acf[" + fieldname + "]") {
                         has_validation_error = true;
                         grecaptcha.reset();
-                        json.errors[index].message = acf.l10n.recaptcha.error;
+                        json.errors[index].message = acf.l10n.recaptcha.errors.required;
                     }
                 });
             }

@@ -40,7 +40,9 @@ class acf_field_recaptcha extends acf_field {
          * Localization for messages and text, accessible in the JavaScript context as well.
          */
         $this->l10n = array(
-            'error' => __('Please click the checkbox.', 'acf-recaptcha'),
+            'errors' => array(
+                'required' => __('Please click the checkbox.', 'acf-recaptcha'),
+            ),
         );
 
         // Adds a filter to validate forms with reCAPTCHA protection switched on.
