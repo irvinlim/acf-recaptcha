@@ -61,6 +61,21 @@ class acf_field_recaptcha extends acf_field {
             'error' => __('Please click the checkbox.', 'acf-recaptcha'),
         );
 
+        /**
+         * Adds a filter to validate forms with the 'recaptcha' flag switched on.
+         */
+        add_filter('acf/validate_save_post', array($this, 'validate_save_recaptcha_post'), 1);
+
+        /**
+         * Adds an action to append a 'recaptcha' flag when editing a field group.
+         */
+        add_action('acf/render_field_group_settings', array($this, 'render_field_group_recaptcha_flag_setting'), 10, 1);
+
+        /**
+         * Adds a filter to check forms submitted for the recaptcha field group or form setting.
+         */
+        add_filter('acf/pre_submit_form', array($this, 'check_recaptcha_flag'), 10, 1);
+
         parent::__construct();
 
     }
@@ -190,7 +205,7 @@ class acf_field_recaptcha extends acf_field {
     function input_admin_enqueue_scripts() {
 
         $dir = plugin_dir_url(__FILE__);
-        
+
         // Register necessary scripts.
         wp_register_script('acf-recaptcha-input', "{$dir}js/input.js", array("acf-input"));
         wp_register_script('acf-recaptcha-field-group', "{$dir}js/field-group.js", array("acf-field-group"));
@@ -275,6 +290,99 @@ class acf_field_recaptcha extends acf_field {
         $valid = 'Invalid reCaptcha value ' . $value . ' response isSuccess(): ' .
             ($response->isSuccess() ? 'true' : 'false') . ' errors: ' . json_encode($errors);
         return $valid;
+    }
+
+    /**
+     * Adds missing ACF v5 business logic where fields marked as required and are not sent
+     * via $_POST are not handled appropriately.
+     * This behaviour is not acceptable for a ACF reCAPTCHA, so we have to patch the behaviour here.
+     *
+     * @type    filter 'acf/validate_save_post' 1
+     * @date    08/07/2017
+     * @since   1.2.0
+     */
+    function validate_save_recaptcha_post() {
+        // TODO
+    }
+
+    /**
+     * Adds a third-party field group setting in the Field Group edit page.
+     * Allows users to toggle whether a field group should require reCAPTCHA
+     * when the post is submitted.
+     *
+     * @type    action 'acf/render_field_group_settings' 10
+     * @date    08/07/2017
+     * @since   1.2.0
+     *
+     * @param  $field_group array   Field group settings for current field group being edited.
+     */
+    function render_field_group_recaptcha_flag_setting($field_group) {
+        acf_render_field_wrap(array(
+            'label' => __('ACF reCAPTCHA Protection', 'acf-recaptcha'),
+            'instructions' => 'Switch on if this field group should be protected by reCAPTCHA.',
+            'type' => 'true_false',
+            'name' => 'recaptcha',
+            'prefix' => 'acf_field_group',
+            'value' => $field_group['recaptcha'],
+            'ui' => 1,
+            'ui_on_text' => __('On', 'acf-recaptcha'),
+            'ui_off_text' => __('Off', 'acf-recaptcha'),
+        ));
+    }
+
+    /**
+     * Checks for the 'recaptcha' flag prior to saving a form.
+     *
+     * This can be set either at the form or field group level, and will attempt to coalesce the value for the
+     * 'recaptcha' flag into the form at the point of invocation of this filter.
+     *
+     * The only exception (discovered so far) is using `acf_form()` in conjunction with Location Rules, which will
+     * render front end field groups without specifying the field group ID explicitly. This is a known limitation
+     * and hence ACF reCAPTCHA users should avoid using this.
+     *
+     * @type    filter 'acf/pre_submit_form' 10
+     * @date    08/07/2017
+     * @since   1.2.0
+     *
+     * @param $form array   The form submitted.
+     */
+    function check_recaptcha_flag($form) {
+        $requires_recaptcha = false;
+
+        /*
+         * First check if the flag is set in the form $args.
+         *
+         * This method will always work, regardless which of the two methods used:
+         *   - `acf_form($args)`
+         *   - `acf_register_form($args)`
+         */
+        if (isset($form['recaptcha']) && $form['recaptcha'] === true) {
+            $requires_recaptcha = true;
+        }
+
+        /*
+         * If not, determine if any of the field groups has the 'recaptcha' flag set.
+         *
+         * NOTE: This will only work if the field group ID is passed to `$args['field_groups']` explicitly in `acf_form($args)`.
+         * This will not work for field groups set using location rules, and rendered using `acf_form()` (without arguments).
+         */
+        if (!$requires_recaptcha && !empty($form['field_groups'])) {
+            foreach ($form['field_groups'] as $group_name) {
+                $group = acf_get_field_group($group_name);
+
+                if (isset($group['recaptcha']) && $group['recaptcha'] === true) {
+                    $requires_recaptcha = true;
+                    break;
+                }
+            }
+        }
+
+        // Bail if we don't need to validate for reCAPTCHA.
+        if (!$requires_recaptcha) {
+            return;
+        }
+
+        // TODO: Validate the form.
     }
 
 
