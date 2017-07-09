@@ -324,6 +324,11 @@ class acf_field_recaptcha extends acf_field {
         // Maintain a flag for whether we have found a reCAPTCHA field in $_POST.
         $has_found_recaptcha = false;
 
+        // Form must fail if no fields are even present.
+        if (empty($_POST['acf'])) {
+            return false;
+        }
+
         // Validate the value of every reCAPTCHA field in $_POST.
         foreach ($_POST['acf'] as $field_key => $value) {
             $field = acf_get_field($field_key);
