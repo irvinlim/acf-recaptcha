@@ -1,9 +1,9 @@
 <?php
 
-// Load Google's ReCaptcha library
+// Load Google's reCaptcha PHP API.
 require("lib/autoload.php");
 
-// Local custom RequestMethod
+// Local custom RequestMethod.
 require('WP_requestmethod.php');
 
 class acf_field_recaptcha extends acf_field {
@@ -47,17 +47,15 @@ class acf_field_recaptcha extends acf_field {
 
     }
 
-
     /**
      * Renders additional field settings for ACF reCAPTCHA field type.
      *
-     * @type    action
-     * @since    3.6
-     * @date    23/01/13
+     * @type    action 'acf/render_field/type=recaptcha'
+     * @date    10/07/2015
+     * @since   1.0.0
      *
      * @param $field array      Array of field settings. Pass to {@link acf_render_field_setting}.
      */
-
     function render_field_settings($field) {
 
         acf_render_field_setting($field, array(
@@ -109,17 +107,15 @@ class acf_field_recaptcha extends acf_field {
 
     }
 
-
     /**
      * Renders the field on front end forms.
      *
-     * @type    action 'acf/render_field'
+     * @type    action 'acf/render_field/type=recaptcha'
      * @date    10/07/2015
      * @since   1.0.0
      *
      * @param $field array      Array of field settings.
      */
-
     function render_field($field) {
         if (is_admin()) {
             return;
@@ -135,11 +131,10 @@ class acf_field_recaptcha extends acf_field {
         endif;
     }
 
-
     /**
      * Enqueues CSS and JS for ACF reCAPTCHA.
      *
-     * @type    action 'acf/admin_enqueue_scripts'
+     * @type    action
      * @date    10/07/2015
      * @since   1.0.0
      */
@@ -173,13 +168,12 @@ class acf_field_recaptcha extends acf_field {
 
     }
 
-
     /**
      * This filter is used to perform validation on the value prior to saving.
      * All values are validated regardless of the field's required setting. This allows you to validate and return
      * messages to the user if the value is not correct.
      *
-     * @type    filter 'acf/validate_value'
+     * @type    filter 'acf/validate_value/type=recaptcha'
      * @date    10/07/2015
      * @since   1.0.0
      *
@@ -242,7 +236,8 @@ class acf_field_recaptcha extends acf_field {
      * Validates a reCAPTCHA-protected form. This means that there must be at least one reCAPTCHA field in the posted
      * form data, and all reCAPTCHA values posted must be valid.
      *
-     * @return bool     Returns true if the above conditions hold true.
+     * @param $form_values array    Array of form values submitted, retrieved from $_POST.
+     * @return bool                 Returns true if the above conditions hold true.
      */
     function validate_recaptcha_form($form_values) {
         // Maintain a flag for whether we have found a reCAPTCHA field in $_POST.
@@ -296,8 +291,7 @@ class acf_field_recaptcha extends acf_field {
 
     /**
      * Adds a third-party field group setting in the Field Group edit page.
-     * Allows users to toggle whether a field group should require reCAPTCHA
-     * when the post is submitted.
+     * Allows users to toggle whether a field group should require reCAPTCHA when the post is submitted.
      *
      * @type    action 'acf/render_field_group_settings' 10
      * @date    08/07/2017
@@ -374,8 +368,6 @@ class acf_field_recaptcha extends acf_field {
         return false;
     }
 
-
 }
-
 
 new acf_field_recaptcha();
