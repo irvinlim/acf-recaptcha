@@ -48,63 +48,12 @@
     });
 })(jQuery);
 
-(function($) {
-
-    /** ACF field element. */
-    var $el = null;
-
-    /** Field name. */
-    var fieldname = "";
-
-    if (typeof acf.add_action !== 'undefined') {
-
-        /**
-         * When the recaptcha field is added to the front end form, we save the element and fieldname.
-         */
-        acf.add_action('ready append', function($body) {
-            if ($el = acf.get_field({ type: 'recaptcha' }, $body)) {
-                fieldname = $el.attr("data-key");
-            }
-        });
-
-        /**
-         * Handle validation for recaptcha field type.
-         */
-        acf.add_filter('validation_complete', function(json) {
-
-            // Guard against no grecaptcha or recaptcha field.
-            if (typeof(grecaptcha) === "undefined" || !$el) {
-                return json;
-            }
-
-            var has_validation_error = false;
-
-            // Set error message for any recaptcha field errors.
-            if (json.errors) {
-                $.each(json.errors, function(index, val) {
-                    if (val.input === "acf[" + fieldname + "]") {
-                        has_validation_error = true;
-                        grecaptcha.reset();
-                        json.errors[index].message = acf.l10n.recaptcha.errors.required;
-                    }
-                });
-            }
-
-            // Removes the hidden field used by grecaptcha, in order to not save it as a field to the database.
-            // if (!has_validation_error) {
-            //     $el.find("input[type=hidden]").remove();
-            // }
-
-            return json;
-        });
-
-    }
-
-})(jQuery);
-
 /**
  * Callback function when the Google reCAPTCHA API is loaded.
  * Used to invoke grecaptcha.render() on the relevant fields.
+ *
+ * @date    01/07/2017
+ * @since   v1.2.0
  */
 function recaptcha_onload() {
     (function($) {

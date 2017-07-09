@@ -36,15 +36,6 @@ class acf_field_recaptcha extends acf_field {
             're_size' => 'normal',
         );
 
-        /**
-         * Localization for messages and text, accessible in the JavaScript context as well.
-         */
-        $this->l10n = array(
-            'errors' => array(
-                'required' => __('Please click the checkbox.', 'acf-recaptcha'),
-            ),
-        );
-
         // Adds a filter to validate forms with reCAPTCHA protection switched on.
         add_filter('acf/validate_save_post', array($this, 'validate_save_recaptcha_post'), 10, 0);
 
@@ -206,7 +197,7 @@ class acf_field_recaptcha extends acf_field {
 
         // All reCAPTCHA fields should be required by default.
         if (!strlen($value)) {
-            return false;
+            return __('Please click the checkbox.', 'acf-recaptcha');
         }
 
         return $valid;
