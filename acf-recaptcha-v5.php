@@ -8,47 +8,26 @@ require('WP_requestmethod.php');
 
 class acf_field_recaptcha extends acf_field {
 
-
-    /*
-    *  __construct
-    *
-    *  This function will setup the field type data
-    *
-    *  @type	function
-    *  @date	5/03/2014
-    *  @since	5.0.0
-    *
-    *  @param	n/a
-    *  @return	n/a
-    */
-
     function __construct() {
 
         /**
-         *  name (string) Single word, no spaces. Underscores allowed
+         * Unique identifier for the field type.
          */
-
         $this->name = 'recaptcha';
 
-
         /**
-         * label (string) Multiple words, can include spaces, visible when selecting a field type
+         * Label for the field type, shown when editing a field group.
          */
-
         $this->label = __('reCAPTCHA', 'acf-recaptcha');
 
-
         /**
-         * category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
+         * Category for the field type, shown when editing a field group.
          */
-
         $this->category = 'Custom';
 
-
         /**
-         * defaults (array) Array of default settings which are merged into the field object. These are used later in settings
+         * Array of default settings which are merged into the field object.
          */
-
         $this->defaults = array(
             'site_key' => '',
             'secret_key' => '',
@@ -57,18 +36,17 @@ class acf_field_recaptcha extends acf_field {
             're_size' => 'normal',
         );
 
+        /**
+         * Localization for messages and text, accessible in the JavaScript context as well.
+         */
         $this->l10n = array(
             'error' => __('Please click the checkbox.', 'acf-recaptcha'),
         );
 
-        /**
-         * Adds a filter to validate forms with the 'recaptcha' flag switched on.
-         */
+        // Adds a filter to validate forms with reCAPTCHA protection switched on.
         add_filter('acf/validate_save_post', array($this, 'validate_save_recaptcha_post'), 10, 0);
 
-        /**
-         * Adds an action to append a 'recaptcha' flag when editing a field group.
-         */
+        // Adds an action to append a field group toggle to enable reCAPTCHA protection for the field group.
         add_action('acf/render_field_group_settings', array($this, 'render_field_group_recaptcha_flag_setting'), 10, 1);
 
 
@@ -77,30 +55,17 @@ class acf_field_recaptcha extends acf_field {
     }
 
 
-    /*
-    *  render_field_settings()
-    *
-    *  Create extra settings for your field. These are visible when editing a field
-    *
-    *  @type	action
-    *  @since	3.6
-    *  @date	23/01/13
-    *
-    *  @param	$field (array) the $field being edited
-    *  @return	n/a
-    */
+    /**
+     * Renders additional field settings for ACF reCAPTCHA field type.
+     *
+     * @type    action
+     * @since    3.6
+     * @date    23/01/13
+     *
+     * @param $field array      Array of field settings. Pass to {@link acf_render_field_setting}.
+     */
 
     function render_field_settings($field) {
-
-        /*
-        *  acf_render_field_setting
-        *
-        *  This function will create a setting for your field. Simply pass the $field parameter and an array of field settings.
-        *  The array of settings does not require a `value` or `prefix`; These settings are found from the $field array.
-        *
-        *  More than one setting can be added by copy/paste the above code.
-        *  Please note that you must also have a matching $defaults value for the field name (font_size)
-        */
 
         acf_render_field_setting($field, array(
             'label' => __('Site Key', 'acf-recaptcha'),
@@ -152,20 +117,15 @@ class acf_field_recaptcha extends acf_field {
     }
 
 
-    /*
-    *  render_field()
-    *
-    *  Create the HTML interface for your field
-    *
-    *  @param	$field (array) the $field being rendered
-    *
-    *  @type	action
-    *  @since	3.6
-    *  @date	23/01/13
-    *
-    *  @param	$field (array) the $field being edited
-    *  @return	n/a
-    */
+    /**
+     * Renders the field on front end forms.
+     *
+     * @type    action 'acf/render_field'
+     * @date    10/07/2015
+     * @since   1.0.0
+     *
+     * @param $field array      Array of field settings.
+     */
 
     function render_field($field) {
         if (is_admin()) {
@@ -183,21 +143,13 @@ class acf_field_recaptcha extends acf_field {
     }
 
 
-    /*
-    *  input_admin_enqueue_scripts()
-    *
-    *  This action is called in the admin_enqueue_scripts action on the edit screen where your field is created.
-    *  Use this action to add CSS + JavaScript to assist your render_field() action.
-    *
-    *  @type	action (admin_enqueue_scripts)
-    *  @since	3.6
-    *  @date	23/01/13
-    *
-    *  @param	n/a
-    *  @return	n/a
-    */
-
-
+    /**
+     * Enqueues CSS and JS for ACF reCAPTCHA.
+     *
+     * @type    action 'acf/admin_enqueue_scripts'
+     * @date    10/07/2015
+     * @since   1.0.0
+     */
     function input_admin_enqueue_scripts() {
 
         $dir = plugin_dir_url(__FILE__);
@@ -229,42 +181,21 @@ class acf_field_recaptcha extends acf_field {
     }
 
 
-    /*
-    *  input_admin_head()
-    *
-    *  This action is called in the admin_head action on the edit screen where your field is created.
-    *  Use this action to add CSS and JavaScript to assist your render_field() action.
-    *
-    *  @type	action (admin_head)
-    *  @since	3.6
-    *  @date	23/01/13
-    *
-    *  @param	n/a
-    *  @return	n/a
-    */
-
-    function input_admin_head() {
-
-    }
-
-
-    /*
-    *  validate_value()
-    *
-    *  This filter is used to perform validation on the value prior to saving.
-    *  All values are validated regardless of the field's required setting. This allows you to validate and return
-    *  messages to the user if the value is not correct
-    *
-    *  @type	filter
-    *  @date	11/02/2014
-    *  @since	5.0.0
-    *
-    *  @param	$valid (boolean) validation status based on the value and the field's required setting
-    *  @param	$value (mixed) the $_POST value
-    *  @param	$field (array) the field array holding all the field options
-    *  @param	$input (string) the corresponding input name for $_POST value
-    *  @return	$valid
-    */
+    /**
+     * This filter is used to perform validation on the value prior to saving.
+     * All values are validated regardless of the field's required setting. This allows you to validate and return
+     * messages to the user if the value is not correct.
+     *
+     * @type    filter 'acf/validate_value'
+     * @date    10/07/2015
+     * @since   1.0.0
+     *
+     * @param $valid boolean    Validation status based on the value and the field's required setting.
+     * @param $value mixed      The $_POST value.
+     * @param $field array      The field array holding all the field options.
+     * @param $input string     The corresponding input name for $_POST value.
+     * @return boolean          Return true if the value is valid.
+     */
     function validate_value($valid, $value, $field, $input) {
         // Only process AJAX client-side validation requests.
         if (!is_admin()) {
@@ -309,10 +240,10 @@ class acf_field_recaptcha extends acf_field {
         }
 
         // Validate the reCAPTCHA-protected form.
-        if (!$this->validate_recaptcha_form()) {
+        if (!$this->validate_recaptcha_form($_POST['acf'])) {
             acf_add_validation_error('', __('reCAPTCHA value is invalid.', 'acf-recaptcha'));
         }
-     }
+    }
 
     /**
      * Validates a reCAPTCHA-protected form. This means that there must be at least one reCAPTCHA field in the posted
@@ -320,17 +251,17 @@ class acf_field_recaptcha extends acf_field {
      *
      * @return bool     Returns true if the above conditions hold true.
      */
-    function validate_recaptcha_form() {
+    function validate_recaptcha_form($form_values) {
         // Maintain a flag for whether we have found a reCAPTCHA field in $_POST.
         $has_found_recaptcha = false;
 
         // Form must fail if no fields are even present.
-        if (empty($_POST['acf'])) {
+        if (empty($form_values)) {
             return false;
         }
 
         // Validate the value of every reCAPTCHA field in $_POST.
-        foreach ($_POST['acf'] as $field_key => $value) {
+        foreach ($form_values as $field_key => $value) {
             $field = acf_get_field($field_key);
 
             if ($field['type'] == 'recaptcha') {
