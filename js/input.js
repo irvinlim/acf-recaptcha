@@ -103,10 +103,39 @@
 })(jQuery);
 
 /**
- * Callback function invoked by grecaptcha.
- *
- * @param captchaValue reCaptcha session value passed by callback.
+ * Callback function when the Google reCAPTCHA API is loaded.
+ * Used to invoke grecaptcha.render() on the relevant fields.
  */
-function acf_captcha_called(captchaValue) {
-    jQuery("[data-type=recaptcha]").find("input[type=hidden]").val(captchaValue).change();
+function recaptcha_onload() {
+    (function($) {
+        $.each(acf.get_fields('recaptcha'), function(idx, field) {
+            // Find placeholder element in field div.
+            var $placeholder = $(field).find('.g-recaptcha');
+
+            // Call the render() method in Google reCAPTCHA's API.
+            grecaptcha.render($placeholder[0], {
+                /**
+                 * Google reCAPTCHA site key.
+                 */
+                sitekey: $placeholder.data('sitekey'),
+
+                /**
+                 * Google reCAPTCHA customisation options.
+                 */
+                theme: $placeholder.data('theme'),
+                type: $placeholder.data('type'),
+                size: $placeholder.data('size'),
+
+                /**
+                 * Callback function invoked by Google reCAPTCHA API.
+                 * Update the value in the field div to pass to ACF validator.
+                 *
+                 * @param captchaValue reCaptcha session value passed by callback.
+                 */
+                callback: function(captchaValue) {
+                    $(field).find('input').val(captchaValue).change();
+                }
+            });
+        });
+    })(jQuery);
 }
