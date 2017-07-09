@@ -319,7 +319,13 @@ class acf_field_recaptcha extends acf_field {
     function render_field_group_recaptcha_flag_setting($field_group) {
         acf_render_field_wrap(array(
             'label' => __('ACF reCAPTCHA Protection', 'acf-recaptcha'),
-            'instructions' => 'Switch on if this field group should be protected by reCAPTCHA.',
+            'instructions' =>
+                __('Switch on if this field group should be protected by reCAPTCHA.', 'acf-recaptcha') .
+                '<br /><br />' .
+                '<strong>' . __('Note: ', 'acf-recaptcha') . '</strong>' .
+                __('If you use this option, you have to explicitly specify the field group ID when using ' .
+                    '<code>acf_form</code>. ', 'acf-recaptcha') .
+                __('Using location rules will not ensure your front end form will be protected.', 'acf-recaptcha'),
             'type' => 'true_false',
             'name' => 'recaptcha',
             'prefix' => 'acf_field_group',
