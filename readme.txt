@@ -8,7 +8,7 @@ Stable tag: 1.1.1
 License: MIT
 License URI: https://github.com/irvinlim/acf-recaptcha/blob/master/LICENSE
 
-Reduce spam with reCAPTCHA on your Advanced Custom Fields frontend forms. Currently only supports ACF v5.
+Prevent spam on your Advanced Custom Fields (ACF) v5 frontend forms with Google reCAPTCHA.
 
 == Description ==
 
@@ -16,8 +16,8 @@ ACF reCAPTCHA brings Google reCAPTCHA to [Advanced Custom Fields](http://wordpre
 
 Features include:
 
-* Complete frontend and backend validation to prevent spambots from bypassing reCAPTCHA requirement
-* ACF-compliant frontend validation, which prompts the user if the reCAPTCHA has not been passed
+* *ACF reCAPTCHA Protection* ensures that spambots cannot circumvent reCAPTCHA to submit forms on the server-side
+* ACF-compliant client-side validation which prompts the user if reCAPTCHA is not clicked or had expired
 * Customizable reCAPTCHA options, including theme (light/dark), type (image/audio) and size (normal/compact)
 * Compatible with ACF Conditional Logic feature, which allows hiding/showing certain fields until the reCAPTCHA has been passed
 
@@ -27,32 +27,30 @@ ACF reCAPTCHA is meant to be used **only on frontend forms**, in order to protec
 
 To create a frontend form programmatically, please view the official documentation on the ACF website [here](https://www.advancedcustomfields.com/resources/create-a-front-end-form/).
 
-Alternatively, you can set a fixed location for the field group to appear in, using custom location rules. For example, if you wish to create a contact page with ACF and ACF reCAPTCHA, you would set the location rule to match your "Contact Us" page, and the field groups will appear on the frontend.
-
 For more information, view the official documentation on the ACF website [here](https://www.advancedcustomfields.com/resources/custom-location-rules/).
 
 = ACF Compatibility =
 
-ACF reCAPTCHA is only compatible with ACF v5 at the moment. If you urgently require/would like to help add support for v4, do reach out to me on the GitHub repository.
+ACF reCAPTCHA is currently only compatible with ACF v5 at the moment. If you would like to help to add support for v4, do submit a PR on GitHub.
 
 = GitHub =
 
 [https://github.com/irvinlim/acf-recaptcha](https://github.com/irvinlim/acf-recaptcha)
 
 == Installation ==
-If you haven't already, [generate your API keys for Google reCAPTCHA](https://www.google.com/recaptcha/admin) first. You will need the **site key** and **secret key**.
+In order to use ACF reCAPTCHA, you need to generate your reCAPTCHA API keys for your domain at the [Google reCAPTCHA Dashboard](https://www.google.com/recaptcha/admin) first.
 
-1. Copy the `acf-recaptcha` folder into your `wp-content/plugins` folder.
-2. Activate the plugin via the plugins admin page.
-3. Create a new field via ACF and select the reCAPTCHA type (grouped under Custom)
-4. Enter your site key and secret key into the fields options.
-
-That's it! It should work out of the box, as long as your API keys are correct and valid for your domain.
+1. In the ACF field group edit page, click *Add Field* to add a new field.
+2. Find the *reCAPTCHA* field type under *Custom*.
+3. Enter your site key and secret key that was generated previously.
+4. *(optional)* Configure the theme, size and type of the reCAPTCHA widget.
+5. **Important**: Scroll down to the bottom of the page, and enable *ACF reCAPTCHA Protection* for the field group.
 
 == Screenshots ==
 1. ACF reCAPTCHA customization in the ACF backend page. Enter your site and secret keys here.
 2. Example frontend form with ACF reCAPTCHA and conditional logic applied to the text field.
 3. Example frontend form with ACF reCAPTCHA that is solved. The conditional logic had hidden the previous field and displayed a new field here.
+4. ACF reCAPTCHA Protection toggle for field groups.
 
 == Changelog ==
 = 1.1.1 =
@@ -93,3 +91,8 @@ That's it! It should work out of the box, as long as your API keys are correct a
 
 = 1.0 =
 * Initial version
+
+== Upgrade Notice ==
+
+= 1.2.0 =
+* Version 1.2.0 includes some important security fixes. Read more [here](https://github.com/irvinlim/acf-recaptcha/pull/22) and update ASAP.
