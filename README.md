@@ -6,7 +6,7 @@
 
 ## Announcement
 
-An important security fix was released in v1.2.0. Read more about it [here](), and please update to v1.2.0 ASAP.
+An important security fix was released in v1.2.0. Read more about it [here](https://github.com/irvinlim/acf-recaptcha/pull/22), and please update to v1.2.0 ASAP.
 
 ## Generating API keys
 
@@ -63,7 +63,7 @@ Note that if a frontend form has no reCAPTCHA fields but has ACF reCAPTCHA Prote
 
 For field groups created using the ACF interface in `wp-admin`, simply turning on the *ACF reCAPTCHA Protection* toggle would be sufficient.
 
-![](https://raw.githubusercontent.com/irvinlim/acf-recaptcha/master/assets/screenshot-4.png)
+![](https://raw.githubusercontent.com/irvinlim/acf-recaptcha/v1.2/assets/screenshot-4.png)
 
 **Note**: This will not work with field groups added to frontend forms which use a combination of *Location Rules* and `acf_form()` (without any arguments). Field group ID or key has to be explicitly specified in `acf_form($args)`.
 

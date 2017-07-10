@@ -26,7 +26,7 @@ function render_field_message() {
             </p>
             <p>
                 <?php echo __('To protect this field group from spam, you must turn on <strong>"ACF reCAPTCHA Protection"</strong> under the settings at the bottom of the page, and specify the field group ID explicitly in your frontend form code.', 'acf-recaptcha'); ?>
-                <?php echo __('Read more about this on the <a href="https://github.com/irvinlim/acf-recaptcha">GitHub repository</a>.', 'acf-recaptcha'); ?>
+                <?php echo __('Read more <a href="https://github.com/irvinlim/acf-recaptcha#acf-recaptcha-protection">here</a>.', 'acf-recaptcha'); ?>
             </p>
         </div>
     </div>
