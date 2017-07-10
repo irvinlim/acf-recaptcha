@@ -53,6 +53,13 @@ In order to use ACF reCAPTCHA, you need to generate your reCAPTCHA API keys for 
 4. ACF reCAPTCHA Protection toggle for field groups.
 
 == Changelog ==
+= 1.2.0 =
+* Fixed an important security bug, which allowed bots to bypass reCAPTCHA. Read more [here](https://github.com/irvinlim/acf-recaptcha/pull/22)
+* Multiple reCAPTCHA widgets will be able to render on the same page
+* Removed AJAX verification of reCAPTCHA values and instead perform it only during form submission
+* Expiry of reCAPTCHA value will trigger an ACF validation error on the client side
+* Made help text and links available in the Field Group settings page to reference ACF reCAPTCHA Protection easily
+
 = 1.1.1 =
 * Added an Upgrade Notice box for future important upgrade notices
 * Make Google reCAPTCHA API JS load asynchronously to prevent possible race conditions
