@@ -235,6 +235,9 @@ class acf_field_recaptcha extends acf_field {
         if (!$this->validate_recaptcha_form($_POST['acf'])) {
             acf_add_validation_error('', __('reCAPTCHA value is invalid or expired. Please try again.', 'acf-recaptcha'));
         }
+
+        // Remove all reCAPTCHA fields from $_POST data prior to saving the post to the database.
+        $this->remove_recaptcha_fields_from_postdata();
     }
 
     /**
@@ -272,6 +275,19 @@ class acf_field_recaptcha extends acf_field {
         }
 
         return true;
+    }
+
+    /**
+     * Unsets all recaptcha fields from $_POST data prior to saving the form.
+     */
+    function remove_recaptcha_fields_from_postdata() {
+        foreach ($_POST['acf'] as $field_key => $value) {
+            $field = acf_get_field($field_key);
+
+            if ($field['type'] == 'recaptcha') {
+                unset($_POST['acf'][$field_key]);
+            }
+        }
     }
 
     /**
