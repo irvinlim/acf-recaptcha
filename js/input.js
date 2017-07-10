@@ -57,12 +57,16 @@
  */
 function recaptcha_onload() {
     (function($) {
+        if (typeof acf === 'undefined') {
+            return;
+        }
+
         $.each(acf.get_fields('recaptcha'), function(idx, field) {
             // Find placeholder element in field div.
             var $placeholder = $(field).find('.g-recaptcha');
 
             // Call the render() method in Google reCAPTCHA's API.
-            grecaptcha.render($placeholder[0], {
+            var widgetId = grecaptcha.render($placeholder[0], {
                 /**
                  * Google reCAPTCHA site key.
                  */
@@ -83,6 +87,21 @@ function recaptcha_onload() {
                  */
                 callback: function(captchaValue) {
                     $(field).find('input').val(captchaValue).change();
+                },
+
+                /**
+                 * Callback function invoked by the Google reCAPTCHA API when the response expires.
+                 * Remove the value in the field div and trigger ACF validation manually.
+                 */
+                'expired-callback': function() {
+                    // Set the input field's value to 'expired'.
+                    $(field).find('input').val('expired').change();
+
+                    // Reset the reCAPTCHA widget.
+                    grecaptcha.reset(widgetId);
+
+                    // Trigger ACF validation manually.
+                    acf.validation.fetch($('form.acf-form'));
                 }
             });
         });

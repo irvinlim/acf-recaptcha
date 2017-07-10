@@ -194,6 +194,11 @@ class acf_field_recaptcha extends acf_field {
             return __('Please click the checkbox.', 'acf-recaptcha');
         }
 
+        // When the field expires, we change the input's value to 'expired', so that we can show the correct validation error.
+        if (strtolower(trim($value)) == 'expired') {
+            return __('Verification expired. Please click the checkbox again.', 'acf-recaptcha');
+        }
+
         return $valid;
     }
 
