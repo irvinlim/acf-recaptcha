@@ -59,6 +59,13 @@ class acf_field_recaptcha extends acf_field {
     function render_field_settings($field) {
 
         acf_render_field_setting($field, array(
+            'label' => __('Notice', 'acf-recaptcha'),
+            'message' => render_field_message(),
+            'type' => 'message',
+            'new_lines' => false
+        ));
+
+        acf_render_field_setting($field, array(
             'label' => __('Site Key', 'acf-recaptcha'),
             'instructions' => __('Enter your site key from Google reCAPTCHA.', 'acf-recaptcha'),
             'name' => 'site_key',
@@ -147,6 +154,9 @@ class acf_field_recaptcha extends acf_field {
         wp_register_script('acf-recaptcha-field-group', "{$dir}js/field-group.js", array("acf-field-group"));
         wp_register_script('acf-recaptcha-grecaptcha-api', 'https://www.google.com/recaptcha/api.js?onload=recaptcha_onload&render=explicit#asyncdefer', array("acf-recaptcha-input"));
 
+        // Register styles.
+        wp_register_style('acf-recaptcha-field-group', "${dir}css/field-group.css");
+
         // Enqueue frontend scripts for acf-recaptcha field.
         if (!is_admin()) {
             // Enqueue input script for frontend acf-recaptcha field validation and conditional logic.
@@ -163,6 +173,7 @@ class acf_field_recaptcha extends acf_field {
             // Only enqueue script for 'edit' and 'post-new' when `post-type` is 'acf-field-group'.
             if ($screen->post_type == 'acf-field-group') {
                 wp_enqueue_script('acf-recaptcha-field-group');
+                wp_enqueue_style('acf-recaptcha-field-group');
             }
         }
 

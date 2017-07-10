@@ -1,0 +1,32 @@
+.acf-recaptcha-field-group-message {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -0.5rem;
+    padding: 0.5rem;
+}
+
+.acf-recaptcha-field-group-message > * {
+    padding: 0 0.5rem;
+    flex-basis: 0;
+}
+
+.acf-recaptcha-field-group-message .message-img img {
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 47.995em) {
+    .acf-recaptcha-field-group-message .message-img {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+.acf-recaptcha-field-group-message .message-text {
+    flex-grow: 1;
+}
+
+.acf-recaptcha-field-group-message .message-text h1 {
+    padding-top: 0;
+}

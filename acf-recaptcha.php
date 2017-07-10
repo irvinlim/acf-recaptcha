@@ -15,20 +15,21 @@ License URI: https://opensource.org/licenses/MIT
 define('ACF_RECAPTCHA_ABSPATH', __FILE__);
 
 
-/** 
+/**
  * Loads the text domain.
  */
 load_plugin_textdomain('acf-recaptcha', false, dirname(plugin_basename(__FILE__)) . '/lang/');
 
 
-/** 
+/**
  * Loads any auxiliary files.
  */
 include_once('includes/plugin-update.php');
 include_once('includes/script-loader.php');
+include_once('includes/field-message.php');
 
 
-/** 
+/**
  * Loads the acf_field classes.
  */
 function include_field_types_recaptcha($version) {
