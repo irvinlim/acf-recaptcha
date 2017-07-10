@@ -252,8 +252,41 @@ class acf_field_recaptcha extends acf_field {
     }
 
     /**
+     * Adds a third-party field group setting in the Field Group edit page.
+     * Allows users to toggle whether a field group should require reCAPTCHA when the post is submitted.
+     *
+     * @type    action 'acf/render_field_group_settings' 10
+     * @date    08/07/2017
+     * @since   1.2.0
+     *
+     * @param  $field_group array   Field group settings for current field group being edited.
+     */
+    function render_field_group_recaptcha_flag_setting($field_group) {
+        acf_render_field_wrap(array(
+            'label' => __('ACF reCAPTCHA Protection', 'acf-recaptcha'),
+            'instructions' =>
+                __('Switch on if this field group should be protected by reCAPTCHA.', 'acf-recaptcha') .
+                '<br /><br />' .
+                '<strong>' . __('Note: ', 'acf-recaptcha') . '</strong>' .
+                __('If the field group has no reCAPTCHA fields, turn this off as it will not validate the form. This is a security measure in place which prevents bots from successfully submitting forms without a reCAPTCHA value when the form is configured to require reCAPTCHA.', 'acf-recaptcha') .
+                '<br /><br />' .
+                __('Alternatively, use <code>"recaptcha" => true</code> in your <code>acf_form()</code> options, which will protect the form instead of the field group.', 'acf-recaptcha'),
+            'type' => 'true_false',
+            'name' => 'recaptcha',
+            'prefix' => 'acf_field_group',
+            'value' => $field_group['recaptcha'],
+            'ui' => 1,
+            'ui_on_text' => __('On', 'acf-recaptcha'),
+            'ui_off_text' => __('Off', 'acf-recaptcha'),
+        ));
+    }
+
+    /**
      * Validates a reCAPTCHA-protected form. This means that there must be at least one reCAPTCHA field in the posted
      * form data, and all reCAPTCHA values posted must be valid.
+     *
+     * @date    08/07/2017
+     * @since   1.2.0
      *
      * @param $form_values array    Array of form values submitted, retrieved from $_POST.
      * @return bool                 Returns true if the above conditions hold true.
@@ -290,6 +323,9 @@ class acf_field_recaptcha extends acf_field {
 
     /**
      * Unsets all recaptcha fields from $_POST data prior to saving the form.
+     *
+     * @date    08/07/2017
+     * @since   1.2.0
      */
     function remove_recaptcha_fields_from_postdata() {
         foreach ($_POST['acf'] as $field_key => $value) {
@@ -307,6 +343,9 @@ class acf_field_recaptcha extends acf_field {
      * This method is not idempotent - Google's API will only validate a value once, and fail subsequent validations
      * with the same reCAPTCHA value.
      *
+     * @date    08/07/2017
+     * @since   1.2.0
+     *
      * @param $field array      Array of field settings for a reCAPTCHA field.
      * @param $value string     Posted reCAPTCHA value.
      * @return boolean          Returns true if the value is valid.
@@ -319,36 +358,6 @@ class acf_field_recaptcha extends acf_field {
         $response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
 
         return $response->isSuccess();
-    }
-
-    /**
-     * Adds a third-party field group setting in the Field Group edit page.
-     * Allows users to toggle whether a field group should require reCAPTCHA when the post is submitted.
-     *
-     * @type    action 'acf/render_field_group_settings' 10
-     * @date    08/07/2017
-     * @since   1.2.0
-     *
-     * @param  $field_group array   Field group settings for current field group being edited.
-     */
-    function render_field_group_recaptcha_flag_setting($field_group) {
-        acf_render_field_wrap(array(
-            'label' => __('ACF reCAPTCHA Protection', 'acf-recaptcha'),
-            'instructions' =>
-                __('Switch on if this field group should be protected by reCAPTCHA.', 'acf-recaptcha') .
-                '<br /><br />' .
-                '<strong>' . __('Note: ', 'acf-recaptcha') . '</strong>' .
-                __('If the field group has no reCAPTCHA fields, turn this off as it will not validate the form. This is a security measure in place which prevents bots from successfully submitting forms without a reCAPTCHA value when the form is configured to require reCAPTCHA.', 'acf-recaptcha') .
-                '<br /><br />' .
-                __('Alternatively, use <code>"recaptcha" => true</code> in your <code>acf_form()</code> options, which will protect the form instead of the field group.', 'acf-recaptcha'),
-            'type' => 'true_false',
-            'name' => 'recaptcha',
-            'prefix' => 'acf_field_group',
-            'value' => $field_group['recaptcha'],
-            'ui' => 1,
-            'ui_on_text' => __('On', 'acf-recaptcha'),
-            'ui_off_text' => __('Off', 'acf-recaptcha'),
-        ));
     }
 
     /**
