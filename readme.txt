@@ -4,7 +4,7 @@ Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: https://irvinlim.com/contact/
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: MIT
 License URI: https://github.com/irvinlim/acf-recaptcha/blob/master/LICENSE
 
