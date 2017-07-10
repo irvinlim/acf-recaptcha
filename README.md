@@ -69,7 +69,7 @@ For field groups created using the ACF interface in `wp-admin`, simply turning o
 
 ### Using the `recaptcha` flag
 
-Alternatively, you can use the `recaptcha` flag in both forms and field groups as follows:
+Alternatively, you can use the `recaptcha` flag in both forms and field groups. As long as a form contains the flag or contains a field group with the flag, the whole form will be considered to have the flag.
 
 #### With `acf_form()`
 
@@ -97,6 +97,16 @@ acf_add_local_field_group(array(
             ...
         )
     ),
+    'recaptcha' => true         // <== SET THIS FLAG
+));
+```
+
+#### With `acf_register_form`
+
+```php
+acf_register_form(array(
+    'id' => 'acf-registered-recaptcha-form',
+    'field_groups' => array('group_my_field_group'),
     'recaptcha' => true         // <== SET THIS FLAG
 ));
 ```
