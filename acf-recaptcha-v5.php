@@ -338,9 +338,9 @@ class acf_field_recaptcha extends acf_field {
                 __('Switch on if this field group should be protected by reCAPTCHA.', 'acf-recaptcha') .
                 '<br /><br />' .
                 '<strong>' . __('Note: ', 'acf-recaptcha') . '</strong>' .
-                __('If you use this option, you have to explicitly specify the field group ID when using ' .
-                    '<code>acf_form</code>. ', 'acf-recaptcha') .
-                __('Using location rules will not ensure your front end form will be protected.', 'acf-recaptcha'),
+                __('If the field group has no reCAPTCHA fields, turn this off as it will not validate the form. This is a security measure in place which prevents bots from successfully submitting forms without a reCAPTCHA value when the form is configured to require reCAPTCHA.', 'acf-recaptcha') .
+                '<br /><br />' .
+                __('Alternatively, use <code>"recaptcha" => true</code> in your <code>acf_form()</code> options, which will protect the form instead of the field group.', 'acf-recaptcha'),
             'type' => 'true_false',
             'name' => 'recaptcha',
             'prefix' => 'acf_field_group',
