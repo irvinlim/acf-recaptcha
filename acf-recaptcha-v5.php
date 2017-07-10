@@ -228,7 +228,7 @@ class acf_field_recaptcha extends acf_field {
 
         // Validate the reCAPTCHA-protected form.
         if (!$this->validate_recaptcha_form($_POST['acf'])) {
-            acf_add_validation_error('', __('reCAPTCHA value is invalid.', 'acf-recaptcha'));
+            acf_add_validation_error('', __('reCAPTCHA value is invalid or expired. Please try again.', 'acf-recaptcha'));
         }
     }
 
