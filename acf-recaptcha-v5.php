@@ -4,7 +4,7 @@
 require("lib/autoload.php");
 
 // Local custom RequestMethod.
-require('WP_requestmethod.php');
+require('includes/classes/WPRemoteRequestMethod.php');
 
 class acf_field_recaptcha extends acf_field {
 
@@ -352,7 +352,7 @@ class acf_field_recaptcha extends acf_field {
      */
     function validate_recaptcha_value($field, $value) {
         // Prepare the API.
-        $api = new \ReCaptcha\ReCaptcha($field['secret_key'], new \ReCaptcha\RequestMethod\WP_remote());
+        $api = new \ReCaptcha\ReCaptcha($field['secret_key'], new \ReCaptcha\RequestMethod\WPRemoteRequestMethod());
 
         // Verify the value, with the IP address of the visitor (if server is not behind a proxy).
         $response = $api->verify($value, $_SERVER['REMOTE_ADDR']);

@@ -8,7 +8,7 @@ use ReCaptcha\RequestParameters;
 /**
  * Sends POST requests to the reCAPTCHA service using the WP remote POST method
  */
-class WP_remote implements RequestMethod {
+class WPRemoteRequestMethod implements RequestMethod {
     /**
      * URL to which requests are POSTed.
      * @const string
