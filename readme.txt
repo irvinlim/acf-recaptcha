@@ -48,9 +48,8 @@ In order to use ACF reCAPTCHA, you need to generate your reCAPTCHA API keys for 
 
 == Screenshots ==
 1. ACF reCAPTCHA customization in the ACF backend page. Enter your site and secret keys here.
-2. Example frontend form with ACF reCAPTCHA and conditional logic applied to the text field.
-3. Example frontend form with ACF reCAPTCHA that is solved. The conditional logic had hidden the previous field and displayed a new field here.
-4. ACF reCAPTCHA Protection toggle for field groups.
+2. ACF reCAPTCHA Protection toggle under Field Group Settings. Use this to ensure that your forms are fully protected against spambots.
+3. Example frontend form with ACF reCAPTCHA used with Conditional Logic. The textarea is only displayed when the reCAPTCHA is solved.
 
 == Changelog ==
 = 1.2.0 =
