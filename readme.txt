@@ -21,13 +21,13 @@ Features include:
 * Customizable reCAPTCHA options, including theme (light/dark), type (image/audio) and size (normal/compact)
 * Compatible with ACF Conditional Logic feature, which allows hiding/showing certain fields until the reCAPTCHA has been passed
 
+For more detailed setup instructions, or to report an issue, please head over to the GitHub repository [here](https://github.com/irvinlim/acf-recaptcha).
+
 = ACF Frontend Forms =
 
 ACF reCAPTCHA is meant to be used **only on frontend forms**, in order to protect them from spam by spambots.
 
 To create a frontend form programmatically, please view the official documentation on the ACF website [here](https://www.advancedcustomfields.com/resources/create-a-front-end-form/).
-
-For more information, view the official documentation on the ACF website [here](https://www.advancedcustomfields.com/resources/custom-location-rules/).
 
 = ACF Compatibility =
 
