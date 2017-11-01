@@ -237,8 +237,11 @@ class acf_field_recaptcha extends acf_field {
         // Determine if the form has the 'recaptcha' flag.
         $form_requires_recaptcha = $this->check_if_form_requires_recaptcha($form);
 
-        // Don't handle forms without the flag set.
-        if (!$form_requires_recaptcha) {
+        // Determine if the form contains any 'recaptcha' field types.
+        $form_contains_recaptcha = $this->check_if_form_has_recaptcha_field($form);
+
+        // Don't handle forms without the flag or any recaptcha fields.
+        if (!$form_requires_recaptcha && !$form_contains_recaptcha) {
             return;
         }
 
@@ -323,6 +326,24 @@ class acf_field_recaptcha extends acf_field {
     }
 
     /**
+     * Checks if any fields from $_POST is a recaptcha field type.
+     *
+     * @date    01/11/2017
+     * @since   1.2.1
+     */
+    function check_if_form_has_recaptcha_field() {
+        foreach ($_POST['acf'] as $field_key => $value) {
+            $field = acf_get_field($field_key);
+
+            if ($field['type'] === 'recaptcha') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Unsets all recaptcha fields from $_POST data prior to saving the form.
      *
      * @date    08/07/2017
@@ -332,7 +353,7 @@ class acf_field_recaptcha extends acf_field {
         foreach ($_POST['acf'] as $field_key => $value) {
             $field = acf_get_field($field_key);
 
-            if ($field['type'] == 'recaptcha') {
+            if ($field['type'] === 'recaptcha') {
                 unset($_POST['acf'][$field_key]);
             }
         }
@@ -386,7 +407,7 @@ class acf_field_recaptcha extends acf_field {
          *   - `acf_register_form($args)`
          */
 
-        if (isset($form['recaptcha']) && $form['recaptcha'] === true) {
+        if (isset($form['recaptcha']) && ($form['recaptcha'] === true || $form['recaptcha'] === 'true')) {
             return true;
         }
 
