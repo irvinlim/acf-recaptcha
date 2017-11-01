@@ -386,7 +386,7 @@ class acf_field_recaptcha extends acf_field {
          *   - `acf_register_form($args)`
          */
 
-        if (isset($form['recaptcha']) && $form['recaptcha'] === true) {
+        if (isset($form['recaptcha']) && ($form['recaptcha'] === true || $form['recaptcha'] === 'true')) {
             return true;
         }
 
