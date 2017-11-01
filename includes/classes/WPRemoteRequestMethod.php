@@ -27,11 +27,11 @@ class WPRemoteRequestMethod implements RequestMethod {
             'body' => $params->toQueryString(),
         ));
 
-        if (!is_wp_error($response)) {
-            return wp_remote_retrieve_body($response);
+        // Show WP error page if the request was not made successfully.
+        if (is_wp_error($response)) {
+            wp_die('<strong>ACF reCAPTCHA validation error:</strong><br />' . $response->get_error_message());
         }
 
-        // Alltough we try to decode json we will throw the error
-        throw $response->get_error_message();
+        return wp_remote_retrieve_body($response);
     }
 }
