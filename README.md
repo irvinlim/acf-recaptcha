@@ -1,5 +1,10 @@
 # <a href="https://wordpress.org/plugins/advanced-custom-fields-recaptcha-field/"><img src="https://raw.githubusercontent.com/irvinlim/acf-recaptcha/master/assets/banner-1544x500.png"></a>
 
+[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![WordPress](https://img.shields.io/wordpress/plugin/v/advanced-custom-fields-recaptcha-field.svg?style=flat-square)](https://wordpress.org/plugins/advanced-custom-fields-recaptcha-field)
+[![WordPress](https://img.shields.io/wordpress/plugin/dt/advanced-custom-fields-recaptcha-field.svg?style=flat-square)](https://wordpress.org/plugins/advanced-custom-fields-recaptcha-field)
+[![WordPress](https://img.shields.io/wordpress/plugin/r/advanced-custom-fields-recaptcha-field.svg?style=flat-square)](https://wordpress.org/plugins/advanced-custom-fields-recaptcha-field/reviews/)
+
 **ACF reCAPTCHA** is a reCAPTCHA custom field type for **[Advanced Custom Fields v5](http://www.advancedcustomfields.com/)**, to protect frontend forms from spam by spambots.
 
 ![Google reCAPTCHA](https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
