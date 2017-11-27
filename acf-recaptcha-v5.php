@@ -38,7 +38,7 @@ class acf_field_recaptcha extends acf_field {
             're_theme' => 'light',
             're_type' => 'image',
             're_size' => 'normal',
-        );;
+        );
 
         // Adds a filter to validate forms with reCAPTCHA protection switched on.
         add_filter('acf/validate_save_post', array($this, 'validate_save_recaptcha_post'), 10, 0);
