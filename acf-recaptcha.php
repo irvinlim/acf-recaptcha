@@ -24,6 +24,7 @@ load_plugin_textdomain('acf-recaptcha', false, dirname(plugin_basename(__FILE__)
 /**
  * Loads any auxiliary files.
  */
+include_once('includes/settings-page.php');
 include_once('includes/plugin-update.php');
 include_once('includes/script-loader.php');
 include_once('includes/field-message.php');
