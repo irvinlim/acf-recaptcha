@@ -72,3 +72,13 @@ function acf_recaptcha_options_page()
     echo '
     </form>';
 }
+
+
+function acf_recaptcha_add_settings_link($links)
+{
+    $settings_link = '<a href="options-general.php?page=acf-recaptcha">'.__('Settings', 'acf-recaptcha').'</a>';
+    array_push($links, $settings_link);
+    return $links;
+}
+add_filter("plugin_action_links_advanced-custom-fields-recaptcha-field/acf-recaptcha.php", "acf_recaptcha_add_settings_link");
+
