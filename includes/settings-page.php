@@ -1,8 +1,19 @@
 <?php
-add_action('admin_menu', 'acf_recaptcha_add_admin_menu', 30);
-add_action('admin_init', 'acf_recaptcha_settings_init');
+
+/**
+ * Adds a settings page for configuring global ACF reCAPTCHA settings, which will be displayed
+ * under the ACF settings menu.
+ *
+ * @since 1.3.0
+ */
 
 
+/**
+ * This action adds a submenu page under the "Field Groups" menu item.
+ *
+ * @type    action 'admin_menu'
+ * @since   1.3.0
+ */
 function acf_recaptcha_add_admin_menu()
 {
     add_submenu_page(
@@ -15,7 +26,15 @@ function acf_recaptcha_add_admin_menu()
     );
 }
 
+add_action('admin_menu', 'acf_recaptcha_add_admin_menu', 30);
 
+
+/**
+ * This action initializes the settings for the settings page.
+ *
+ * @type    action 'admin_init'
+ * @since   1.3.0
+ */
 function acf_recaptcha_settings_init()
 {
     register_setting('acf_recaptcha_settings', 'acf_recaptcha');
@@ -43,8 +62,46 @@ function acf_recaptcha_settings_init()
         'acf_recaptcha_settings_section'
     );
 
-
 }
+
+add_action('admin_init', 'acf_recaptcha_settings_init');
+
+
+/**
+ * This action enqueues additional CSS and JS for the settings page.
+ *
+ * @type    action 'admin_enqueue_scripts'
+ * @since   1.3.0
+ */
+function acf_recaptcha_settings_enqueue_scripts()
+{
+    $dir = plugin_dir_url(ACF_RECAPTCHA_ABSPATH);
+
+    // Adds CSS for the settings page.
+    wp_register_style('acf-recaptcha-settings-page', "${dir}/css/settings-page.css");
+    wp_enqueue_style('acf-recaptcha-settings-page');
+}
+
+add_action('admin_enqueue_scripts', 'acf_recaptcha_settings_enqueue_scripts');
+
+
+/**
+ * This filter appends a settings link for this plugin.
+ *
+ * @type    filter 'plugin_action_links_advanced-custom-fields-recaptcha-field/acf-recaptcha.php'
+ * @since   1.3.0
+ *
+ * @param array
+ * @return array
+ */
+function acf_recaptcha_add_settings_link($links)
+{
+    $settings_link = '<a href="options-general.php?page=acf-recaptcha">' . __('Settings', 'acf-recaptcha') . '</a>';
+    array_push($links, $settings_link);
+    return $links;
+}
+
+add_filter('plugin_action_links_advanced-custom-fields-recaptcha-field/acf-recaptcha.php', 'acf_recaptcha_add_settings_link');
 
 
 function site_key_render()
@@ -86,7 +143,24 @@ function acf_recaptcha_options_page()
     ?>
     <div class="wrap">
         <form action="options.php" method="post">
-            <h1><?php echo __('ACF reCAPTCHA Settings', 'acf-recaptcha'); ?></h1>
+            <div class="acf-recaptcha-field-group-message acf-recaptcha-settings-info-box">
+                <div class="message-img">
+                    <img src="https://raw.githubusercontent.com/irvinlim/acf-recaptcha/master/assets/icon-128x128.png">
+                </div>
+                <div class="message-text">
+                    <h1><?php echo __('ACF reCAPTCHA', 'acf-recaptcha'); ?></h1>
+                    <p class="description">
+                        <?php echo __('Advanced Custom Fields plugin for adding Google reCAPTCHA on frontend forms'); ?>
+                    </p>
+                    <p>
+                        <strong><?php echo __('Plugin Homepage'); ?></strong>: <a href="https://github.com/irvinlim/acf-recaptcha">GitHub</a><br>
+                        <strong><?php echo __('Plugin Author'); ?></strong>: <a href="https://github.com/irvinlim">Irvin Lim</a><br>
+                        <strong><?php echo __('Plugin Version'); ?></strong>: <?php echo get_plugin_data(ACF_RECAPTCHA_ABSPATH)['Version']; ?>
+                    </p>
+                </div>
+            </div>
+
+            <h1><?php echo __('Settings', 'acf-recaptcha'); ?></h1>
             <p>
                 <?php echo __('Configure global settings for ACF reCAPTCHA here, which will apply across all reCAPTCHA fields on your site.'); ?>
             </p>
@@ -99,11 +173,3 @@ function acf_recaptcha_options_page()
 }
 
 
-function acf_recaptcha_add_settings_link($links)
-{
-    $settings_link = '<a href="options-general.php?page=acf-recaptcha">' . __('Settings', 'acf-recaptcha') . '</a>';
-    array_push($links, $settings_link);
-    return $links;
-}
-
-add_filter("plugin_action_links_advanced-custom-fields-recaptcha-field/acf-recaptcha.php", "acf_recaptcha_add_settings_link");

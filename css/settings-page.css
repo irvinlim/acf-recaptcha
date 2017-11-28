@@ -1,0 +1,40 @@
+.acf-recaptcha-settings-info-box {
+    background-color: #568EE8;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1.5rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.acf-recaptcha-settings-info-box h1,
+.acf-recaptcha-settings-info-box p {
+    color: #ffffff;
+}
+
+.acf-recaptcha-settings-info-box p.description,
+.acf-recaptcha-settings-info-box a {
+    color: #d7dde6;
+}
+
+.acf-recaptcha-settings-info-box > * {
+    padding: 0 1rem;
+    flex-basis: 0;
+}
+
+@media only screen and (max-width: 47.995em) {
+    .acf-recaptcha-settings-info-box .message-img {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+.acf-recaptcha-settings-info-box .message-text {
+    flex-grow: 1;
+}
+
+.acf-recaptcha-settings-info-box .message-text h1 {
+    padding-top: 0;
+}
