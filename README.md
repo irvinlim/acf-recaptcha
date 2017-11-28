@@ -39,6 +39,15 @@ acf_add_local_field(array(
 ));
 ```
 
+You can also set the reCAPTCHA keys as a WordPress option, which will apply to all reCAPTCHA fields as a site-wide default:
+
+```php
+update_option('acf_recaptcha', array(
+    'site_key'	    => 'SOME_VALID_RECAPTCHA_KEY',
+    'secret_key'    => 'SOME_VALID_RECAPTCHA_SITE_SECRET',
+));
+```
+
 Additionally, you have to set a `recaptcha` flag on the form or field group where you are using the field, to enable *ACF reCAPTCHA Protection*.
 
 ## ACF reCAPTCHA Protection
