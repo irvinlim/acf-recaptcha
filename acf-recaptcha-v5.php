@@ -7,8 +7,13 @@ require("lib/autoload.php");
 require('includes/classes/WPRemoteRequestMethod.php');
 
 class acf_field_recaptcha extends acf_field {
+    public $settings = array();
 
     function __construct() {
+        $settings = get_option('acf_recaptcha');
+        $this->settings['site_key'] = $settings['site_key'];
+        $this->settings['secret_key'] = $settings['secret_key'];
+
 
         /**
          * Unique identifier for the field type.
@@ -28,9 +33,8 @@ class acf_field_recaptcha extends acf_field {
         /**
          * Array of default settings which are merged into the field object.
          */
+
         $this->defaults = array(
-            'site_key' => '',
-            'secret_key' => '',
             're_theme' => 'light',
             're_type' => 'image',
             're_size' => 'normal',
@@ -69,14 +73,16 @@ class acf_field_recaptcha extends acf_field {
             'label' => __('Site Key', 'acf-recaptcha'),
             'instructions' => __('Enter your site key from Google reCAPTCHA.', 'acf-recaptcha'),
             'name' => 'site_key',
-            'required' => true,
+            'placeholder' => ($this->settings['site_key']) ? __('Leave blank to use default keys', 'acf-recaptcha'): '',
+            'required' => ($this->settings['site_key']) ? false : true,
         ));
 
         acf_render_field_setting($field, array(
             'label' => __('Secret Key', 'acf-recaptcha'),
             'instructions' => __('Enter your secret key from Google reCAPTCHA.', 'acf-recaptcha'),
             'name' => 'secret_key',
-            'required' => true,
+            'placeholder' => ($this->settings['secret_key']) ? __('Leave blank to use default keys', 'acf-recaptcha'): '',
+            'required' => ($this->settings['secret_key']) ? false : true,
         ));
 
         acf_render_field_setting($field, array(
@@ -111,7 +117,6 @@ class acf_field_recaptcha extends acf_field {
                 'compact' => __('compact'),
             ),
         ));
-
     }
 
     /**
@@ -128,8 +133,8 @@ class acf_field_recaptcha extends acf_field {
             return;
         }
 
-        if ($field['site_key'] && $field['secret_key']): ?>
-            <div class="g-recaptcha" data-sitekey="<?php echo $field['site_key']; ?>"
+        if ($this->settings['site_key'] && $this->settings['secret_key']): ?>
+            <div class="g-recaptcha" data-sitekey="<?php echo $this->settings['site_key']; ?>"
                  data-theme="<?php echo $field['re_theme']; ?>" data-type="<?php echo $field['re_type']; ?>"
                  data-size="<?php echo $field['re_size']; ?>"></div>
             <input type="hidden" name="<?php echo $field['name'] ?>">
@@ -374,7 +379,7 @@ class acf_field_recaptcha extends acf_field {
      */
     function validate_recaptcha_value($field, $value) {
         // Prepare the API.
-        $api = new \ReCaptcha\ReCaptcha($field['secret_key'], new \ReCaptcha\RequestMethod\WPRemoteRequestMethod());
+        $api = new \ReCaptcha\ReCaptcha($this->settings['secret_key'], new \ReCaptcha\RequestMethod\WPRemoteRequestMethod());
 
         // Verify the value, with the IP address of the visitor (if server is not behind a proxy).
         $response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
@@ -411,6 +416,8 @@ class acf_field_recaptcha extends acf_field {
             return true;
         }
 
+
+
         /*
          * If not, determine if any of the field groups has the 'recaptcha' flag set.
          *
@@ -419,6 +426,7 @@ class acf_field_recaptcha extends acf_field {
          */
 
         if (!empty($form['field_groups'])) {
+            da($field_groups);
             foreach ($form['field_groups'] as $group_name) {
                 $group = acf_get_field_group($group_name);
 
