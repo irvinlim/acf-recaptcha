@@ -4,7 +4,7 @@ Tags: acf, field, recaptcha, captcha, form, frontend
 Donate link: https://irvinlim.com/contact/
 Requires at least: 3.0.1
 Tested up to: 4.8.0
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 License: MIT
 License URI: https://github.com/irvinlim/acf-recaptcha/blob/master/LICENSE
 
@@ -52,6 +52,9 @@ In order to use ACF reCAPTCHA, you need to generate your reCAPTCHA API keys for 
 3. Example frontend form with ACF reCAPTCHA used with Conditional Logic. The textarea is only displayed when the reCAPTCHA is solved.
 
 == Changelog ==
+= 1.3.0 =
+* Added settings page to configure site-wide default reCAPTCHA keys, if not specified
+
 = 1.2.1 =
 * Better handling of server-side reCAPTCHA verification errors
 * Accepted 'true' as a string value when using acf_form() to set the flag directly
