@@ -73,16 +73,16 @@ class acf_field_recaptcha extends acf_field {
             'label' => __('Site Key', 'acf-recaptcha'),
             'instructions' => __('Enter your site key from Google reCAPTCHA.', 'acf-recaptcha'),
             'name' => 'site_key',
-            'placeholder' => $this->settings['site_key'],
-            'required' => false,
+            'placeholder' => ($this->settings['site_key']) ? __('Leave blank to use default keys', 'acf-recaptcha'): '',
+            'required' => ($this->settings['site_key']) ? false : true,
         ));
 
         acf_render_field_setting($field, array(
             'label' => __('Secret Key', 'acf-recaptcha'),
             'instructions' => __('Enter your secret key from Google reCAPTCHA.', 'acf-recaptcha'),
             'name' => 'secret_key',
-            'placeholder' => $this->settings['site_key'],
-            'required' => false,
+            'placeholder' => ($this->settings['secret_key']) ? __('Leave blank to use default keys', 'acf-recaptcha'): '',
+            'required' => ($this->settings['secret_key']) ? false : true,
         ));
 
         acf_render_field_setting($field, array(
