@@ -1,11 +1,12 @@
 <?php
-add_action('admin_menu', 'acf_recaptcha_add_admin_menu');
+add_action('admin_menu', 'acf_recaptcha_add_admin_menu', 30);
 add_action('admin_init', 'acf_recaptcha_settings_init');
 
 
 function acf_recaptcha_add_admin_menu()
 {
-    add_options_page(
+    add_submenu_page(
+        'edit.php?post_type=acf-field-group',
         __('ACF reCAPTCHA', 'acf-recaptcha'),
         __('ACF reCAPTCHA', 'acf-recaptcha'),
         'manage_options',

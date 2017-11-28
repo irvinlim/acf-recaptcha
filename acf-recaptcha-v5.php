@@ -61,7 +61,7 @@ class acf_field_recaptcha extends acf_field {
      */
     function render_field_settings($field) {
 
-        $default_keys_link = sprintf('<a href="%s">%s</a>', admin_url('/options-general.php?page=acf-recaptcha'), __('default keys'));
+        $default_keys_link = sprintf('<a href="%s">%s</a>', admin_url('/edit.php?post_type=acf-field-group&page=acf-recaptcha'), __('default keys'));
 
         acf_render_field_setting($field, array(
             'label' => __('Notice', 'acf-recaptcha'),
