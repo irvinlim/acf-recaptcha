@@ -140,14 +140,28 @@ class acf_field_recaptcha extends acf_field {
             return;
         }
 
-        if ($this->settings['site_key'] && $this->settings['secret_key']): ?>
-            <div class="g-recaptcha" data-sitekey="<?php echo $this->settings['site_key']; ?>"
-                 data-theme="<?php echo $field['re_theme']; ?>" data-type="<?php echo $field['re_type']; ?>"
-                 data-size="<?php echo $field['re_size']; ?>"></div>
-            <input type="hidden" name="<?php echo $field['name'] ?>">
-        <?php else :
+        // Use the keys from the field options first.
+        $site_key = $field['site_key'];
+        $secret_key = $field['secret_key'];
+
+        // Fall back on keys from settings.
+        if (empty($site_key) || empty($secret_key)) {
+            $site_key = $this->settings['site_key'];
+            $secret_key = $this->settings['secret_key'];
+        }
+
+        // If we don't have both keys, then show an error message.
+        if (empty($site_key) || empty($secret_key)) {
             echo "Please enter your site key and secret key first.";
-        endif;
+            return;
+        }
+
+        ?>
+        <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"
+                data-theme="<?php echo $field['re_theme']; ?>" data-type="<?php echo $field['re_type']; ?>"
+                data-size="<?php echo $field['re_size']; ?>"></div>
+        <input type="hidden" name="<?php echo $field['name'] ?>">
+        <?php
     }
 
     /**
@@ -385,8 +399,11 @@ class acf_field_recaptcha extends acf_field {
      * @return boolean          Returns true if the value is valid.
      */
     function validate_recaptcha_value($field, $value) {
+        // Fallback on secret key from settings.
+        $secret_key = $field['secret_key'] ?: $this->settings['secret_key'];
+
         // Prepare the API.
-        $api = new \ReCaptcha\ReCaptcha($this->settings['secret_key'], new \ReCaptcha\RequestMethod\WPRemoteRequestMethod());
+        $api = new \ReCaptcha\ReCaptcha($secret_key, new \ReCaptcha\RequestMethod\WPRemoteRequestMethod());
 
         // Verify the value, with the IP address of the visitor (if server is not behind a proxy).
         $response = $api->verify($value, $_SERVER['REMOTE_ADDR']);
