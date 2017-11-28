@@ -9,10 +9,6 @@
 
 ![Google reCAPTCHA](https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif)
 
-## Announcement
-
-An important security fix was released in v1.2.0. Read more about it [here](https://github.com/irvinlim/acf-recaptcha/pull/22), and please update to v1.2.0 ASAP.
-
 ## Generating API keys
 
 Generate your reCAPTCHA API keys for your domain at the [Google reCAPTCHA Dashboard](https://www.google.com/recaptcha/admin) first. You will need to enter the **Site Key** and **Secret Key** into the field settings later.

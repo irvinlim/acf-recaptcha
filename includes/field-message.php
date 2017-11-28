@@ -21,10 +21,6 @@ function render_field_message() {
                 <?php echo __('Go to the <a href="https://www.google.com/recaptcha/admin">Google reCAPTCHA Dashboard</a> to generate your Site Key and Secret Key.', 'acf-recaptcha'); ?>
             </p>
             <p>
-                <strong><?php echo __('Notice', 'acf-recaptcha'); ?></strong>:
-                <?php echo __('Some important security fixes were released in version 1.2.0. Your forms will now be more protected than ever from spambots!', 'acf-recaptcha'); ?>
-            </p>
-            <p>
                 <?php echo __('To protect this field group from spam, you must turn on <strong>"ACF reCAPTCHA Protection"</strong> under the settings at the bottom of the page, and specify the field group ID explicitly in your frontend form code.', 'acf-recaptcha'); ?>
                 <?php echo __('Read more <a href="https://github.com/irvinlim/acf-recaptcha#acf-recaptcha-protection">here</a>.', 'acf-recaptcha'); ?>
             </p>
