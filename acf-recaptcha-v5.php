@@ -70,6 +70,22 @@ class acf_field_recaptcha extends acf_field {
         ));
 
         acf_render_field_setting($field, array(
+            'label' => __('Site Key', 'acf-recaptcha'),
+            'instructions' => __('Enter your site key from Google reCAPTCHA.', 'acf-recaptcha'),
+            'name' => 'site_key',
+            'placeholder' => $this->settings['site_key'],
+            'required' => false,
+        ));
+
+        acf_render_field_setting($field, array(
+            'label' => __('Secret Key', 'acf-recaptcha'),
+            'instructions' => __('Enter your secret key from Google reCAPTCHA.', 'acf-recaptcha'),
+            'name' => 'secret_key',
+            'placeholder' => $this->settings['site_key'],
+            'required' => false,
+        ));
+
+        acf_render_field_setting($field, array(
             'label' => __('Theme', 'acf-recaptcha'),
             'type' => 'radio',
             'name' => 're_theme',
@@ -410,6 +426,7 @@ class acf_field_recaptcha extends acf_field {
          */
 
         if (!empty($form['field_groups'])) {
+            da($field_groups);
             foreach ($form['field_groups'] as $group_name) {
                 $group = acf_get_field_group($group_name);
 

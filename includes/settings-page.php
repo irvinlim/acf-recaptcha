@@ -5,17 +5,17 @@ add_action('admin_init', 'acf_recaptcha_settings_init');
 
 function acf_recaptcha_add_admin_menu()
 {
-    add_options_page(__('ACF ReCaptcha', 'acf-recaptcha'), __('ACF ReCaptcha', 'acf-recaptcha'), 'manage_options', 'acf_recaptcha', 'acf_recaptcha_options_page');
+    add_options_page(__('ACF reCAPTCHA', 'acf-recaptcha'), __('ACF reCAPTCHA', 'acf-recaptcha'), 'manage_options', 'acf-recaptcha', 'acf_recaptcha_options_page');
 }
 
 
 function acf_recaptcha_settings_init()
 {
-    register_setting('acf_recaptcha_settings', 'acf_recaptcha');
+    register_setting('acf_recaptcha_settings', 'acf-recaptcha');
 
     add_settings_section(
         'acf_recaptcha_settings_section',
-        __('ReCaptcha Keys', 'acf-recaptcha'),
+        __('reCAPTCHA Keys', 'acf-recaptcha'),
         'acf_recaptcha_settings_section_callback',
         'acf_recaptcha_settings'
     );
@@ -81,4 +81,3 @@ function acf_recaptcha_add_settings_link($links)
     return $links;
 }
 add_filter("plugin_action_links_advanced-custom-fields-recaptcha-field/acf-recaptcha.php", "acf_recaptcha_add_settings_link");
-
