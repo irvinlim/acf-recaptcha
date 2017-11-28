@@ -10,10 +10,9 @@ class acf_field_recaptcha extends acf_field {
     public $settings = array();
 
     function __construct() {
-        $settings = get_option('acf_recaptcha');
+        $settings = (array) get_option('acf_recaptcha');
         $this->settings['site_key'] = $settings['site_key'];
         $this->settings['secret_key'] = $settings['secret_key'];
-
 
         /**
          * Unique identifier for the field type.
@@ -62,6 +61,8 @@ class acf_field_recaptcha extends acf_field {
      */
     function render_field_settings($field) {
 
+        $default_keys_link = sprintf('<a href="%s">%s</a>', admin_url('/options-general.php?page=acf-recaptcha'), __('default keys'));
+
         acf_render_field_setting($field, array(
             'label' => __('Notice', 'acf-recaptcha'),
             'message' => render_field_message(),
@@ -71,18 +72,24 @@ class acf_field_recaptcha extends acf_field {
 
         acf_render_field_setting($field, array(
             'label' => __('Site Key', 'acf-recaptcha'),
-            'instructions' => __('Enter your site key from Google reCAPTCHA.', 'acf-recaptcha'),
+            'instructions' =>
+                __('Enter your site key from Google reCAPTCHA.', 'acf-recaptcha') .
+                '<br>' .
+                sprintf(__('If left blank, the %s will be used.', 'acf-recaptcha'), $default_keys_link),
             'name' => 'site_key',
-            'placeholder' => ($this->settings['site_key']) ? __('Leave blank to use default keys', 'acf-recaptcha'): '',
-            'required' => ($this->settings['site_key']) ? false : true,
+            'required' => empty($this->settings['site_key']),
+            'class' => 'code',
         ));
 
         acf_render_field_setting($field, array(
             'label' => __('Secret Key', 'acf-recaptcha'),
-            'instructions' => __('Enter your secret key from Google reCAPTCHA.', 'acf-recaptcha'),
+            'instructions' =>
+                __('Enter your secret key from Google reCAPTCHA.', 'acf-recaptcha') .
+                '<br>' .
+                sprintf(__('If left blank, the %s will be used.', 'acf-recaptcha'), $default_keys_link),
             'name' => 'secret_key',
-            'placeholder' => ($this->settings['secret_key']) ? __('Leave blank to use default keys', 'acf-recaptcha'): '',
-            'required' => ($this->settings['secret_key']) ? false : true,
+            'required' => empty($this->settings['secret_key']),
+            'class' => 'code',
         ));
 
         acf_render_field_setting($field, array(
@@ -426,7 +433,6 @@ class acf_field_recaptcha extends acf_field {
          */
 
         if (!empty($form['field_groups'])) {
-            da($field_groups);
             foreach ($form['field_groups'] as $group_name) {
                 $group = acf_get_field_group($group_name);
 
