@@ -96,7 +96,7 @@ add_action('admin_enqueue_scripts', 'acf_recaptcha_settings_enqueue_scripts');
  */
 function acf_recaptcha_add_settings_link($links)
 {
-    $settings_link = '<a href="options-general.php?page=acf-recaptcha">' . __('Settings', 'acf-recaptcha') . '</a>';
+    $settings_link = sprintf('<a href="%s">%s</a>', admin_url('/edit.php?post_type=acf-field-group&page=acf-recaptcha'), __('Settings', 'acf-recaptcha'));
     array_push($links, $settings_link);
     return $links;
 }
