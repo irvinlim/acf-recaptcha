@@ -96,7 +96,7 @@ add_action('admin_enqueue_scripts', 'acf_recaptcha_settings_enqueue_scripts');
  */
 function acf_recaptcha_add_settings_link($links)
 {
-    $settings_link = '<a href="options-general.php?page=acf-recaptcha">' . __('Settings', 'acf-recaptcha') . '</a>';
+    $settings_link = sprintf('<a href="%s">%s</a>', admin_url('/edit.php?post_type=acf-field-group&page=acf-recaptcha'), __('Settings', 'acf-recaptcha'));
     array_push($links, $settings_link);
     return $links;
 }
@@ -140,6 +140,8 @@ function acf_recaptcha_settings_section_callback()
 
 function acf_recaptcha_options_page()
 {
+    $plugin_data = get_plugin_data(ACF_RECAPTCHA_ABSPATH);
+
     ?>
     <div class="wrap">
         <form action="options.php" method="post">
@@ -155,7 +157,7 @@ function acf_recaptcha_options_page()
                     <p>
                         <strong><?php echo __('Plugin Homepage'); ?></strong>: <a href="https://github.com/irvinlim/acf-recaptcha">GitHub</a><br>
                         <strong><?php echo __('Plugin Author'); ?></strong>: <a href="https://github.com/irvinlim">Irvin Lim</a><br>
-                        <strong><?php echo __('Plugin Version'); ?></strong>: <?php echo get_plugin_data(ACF_RECAPTCHA_ABSPATH)['Version']; ?>
+                        <strong><?php echo __('Plugin Version'); ?></strong>: <?php echo $plugin_data['Version']; ?>
                     </p>
                 </div>
             </div>
