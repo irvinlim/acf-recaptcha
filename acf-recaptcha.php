@@ -22,18 +22,21 @@ load_plugin_textdomain('acf-recaptcha', false, dirname(plugin_basename(__FILE__)
 
 
 /**
- * Loads any auxiliary files.
- */
-include_once('includes/settings-page.php');
-include_once('includes/plugin-update.php');
-include_once('includes/script-loader.php');
-include_once('includes/field-message.php');
-
-
-/**
- * Loads the acf_field classes.
+ * Loads the field type.
  */
 function include_field_types_recaptcha($version) {
+    // Only support version 5.
+    if ($version !== 5) {
+        return;
+    }
+
+    // Load auxilliary classes
+    include_once('includes/settings-page.php');
+    include_once('includes/plugin-update.php');
+    include_once('includes/script-loader.php');
+    include_once('includes/field-message.php');
+
+    // Loads the main class.
     include_once('acf-recaptcha-v5.php');
 }
 
