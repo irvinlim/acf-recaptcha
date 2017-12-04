@@ -27,6 +27,7 @@ load_plugin_textdomain('acf-recaptcha', false, dirname(plugin_basename(__FILE__)
 function include_field_types_recaptcha($version) {
     // Only support version 5.
     if ($version !== 5) {
+        add_action('admin_notices', 'acf_recaptcha_version_4_admin_notice');
         return;
     }
 
@@ -42,3 +43,14 @@ function include_field_types_recaptcha($version) {
 
 add_action('acf/include_field_types', 'include_field_types_recaptcha');
 
+
+/**
+ * Show admin notice if ACF version is not supported.
+ */
+function acf_recaptcha_version_4_admin_notice() {
+    $class = 'notice notice-error';
+    $notice = __('NOTICE', 'acf-recaptcha');
+    $message = __('ACF reCAPTCHA is not supported on Advanced Custom Fields 4.', 'acf-recaptcha');
+
+    printf('<div class="%1$s"><p><strong>%2$s: </strong>%3$s</p></div>', esc_attr($class), $notice, esc_html($message));
+}
