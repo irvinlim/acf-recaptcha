@@ -11,8 +11,8 @@ class acf_field_recaptcha extends acf_field {
 
     function __construct() {
         $settings = (array) get_option('acf_recaptcha');
-        $this->settings['site_key'] = $settings['site_key'];
-        $this->settings['secret_key'] = $settings['secret_key'];
+        $this->settings['site_key'] = isset($settings['site_key']) ? $settings['site_key'] : null;
+        $this->settings['secret_key'] = isset($settings['secret_key']) ? $settings['secret_key'] : null;
 
         /**
          * Unique identifier for the field type.
@@ -304,7 +304,7 @@ class acf_field_recaptcha extends acf_field {
             'type' => 'true_false',
             'name' => 'recaptcha',
             'prefix' => 'acf_field_group',
-            'value' => $field_group['recaptcha'],
+            'value' => isset($field_group['recaptcha']) && $field_group['recaptcha'] === true,
             'ui' => 1,
             'ui_on_text' => __('On', 'acf-recaptcha'),
             'ui_off_text' => __('Off', 'acf-recaptcha'),
