@@ -258,7 +258,7 @@ class acf_field_recaptcha extends acf_field {
         }
 
         // Decrypt _acfform early (at validation stage) because we need form args.
-        $form = @json_decode(acf_decrypt($_POST['_acfform']), true);
+        $form = @json_decode(acf_decrypt($_POST['_acf_form']), true);
 
         // Determine if the form has the 'recaptcha' flag.
         $form_requires_recaptcha = $this->check_if_form_requires_recaptcha($form);

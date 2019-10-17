@@ -1,0 +1,178 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Custom Fields: reCAPTCHA Field\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-14 19:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.0; wp-5.2.2"
+
+#: includes/settings-page.php:21 includes/settings-page.php:22
+#: includes/settings-page.php:153
+msgid "ACF reCAPTCHA"
+msgstr ""
+
+#: acf-recaptcha.php:55
+msgid ""
+"ACF reCAPTCHA is only supported on Advanced Custom Fields 5. The plugin has "
+"been disabled."
+msgstr ""
+
+#: acf-recaptcha-v5.php:295
+msgid "ACF reCAPTCHA Protection"
+msgstr ""
+
+#. Name of the plugin
+msgid "Advanced Custom Fields: reCAPTCHA Field"
+msgstr ""
+
+#: acf-recaptcha-v5.php:303
+msgid ""
+"Alternatively, use <code>\"recaptcha\" => true</code> in <code>acf_form()"
+"</code> to protect the form instead of the field group."
+msgstr ""
+
+#: acf-recaptcha-v5.php:87
+msgid "Enter your secret key from Google reCAPTCHA."
+msgstr ""
+
+#: acf-recaptcha-v5.php:76
+msgid "Enter your site key from Google reCAPTCHA."
+msgstr ""
+
+#: includes/field-message.php:21
+msgid ""
+"Go to the <a href=\"https://www.google.com/recaptcha/admin\">Google "
+"reCAPTCHA Dashboard</a> to generate your Site Key and Secret Key."
+msgstr ""
+
+#: includes/settings-page.php:44
+msgid "Google reCAPTCHA Default Keys"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Google reCAPTCHA Field for Advanced Custom Fields. See <a href=\"https://www."
+"google.com/recaptcha/\">https://www.google.com/recaptcha/</a> for an account."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/irvinlim/acf-recaptcha/"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://irvinlim.com"
+msgstr ""
+
+#: acf-recaptcha-v5.php:78 acf-recaptcha-v5.php:89
+#, php-format
+msgid "If left blank, the %s will be used."
+msgstr ""
+
+#: acf-recaptcha-v5.php:300
+msgid ""
+"If the field group has no reCAPTCHA fields, turn this off because your form "
+"will not validate. Turning this on will prevent bots from bypassing "
+"reCAPTCHA to submit forms without reCAPTCHA values. "
+msgstr ""
+
+#: includes/field-message.php:20
+msgid "Instructions"
+msgstr ""
+
+#. Author of the plugin
+msgid "Irvin Lim"
+msgstr ""
+
+#: acf-recaptcha-v5.php:299
+msgid "Note: "
+msgstr ""
+
+#: acf-recaptcha.php:54
+msgid "NOTICE"
+msgstr ""
+
+#: acf-recaptcha-v5.php:67
+msgid "Notice"
+msgstr ""
+
+#: acf-recaptcha-v5.php:310
+msgid "Off"
+msgstr ""
+
+#: acf-recaptcha-v5.php:309
+msgid "On"
+msgstr ""
+
+#: acf-recaptcha-v5.php:231
+msgid "Please click the checkbox."
+msgstr ""
+
+#: acf-recaptcha-v5.php:301 includes/field-message.php:25
+msgid ""
+"Read more <a href=\"https://github.com/irvinlim/acf-recaptcha#acf-recaptcha-"
+"protection\">here</a>."
+msgstr ""
+
+#: acf-recaptcha-v5.php:25
+msgid "reCAPTCHA"
+msgstr ""
+
+#: acf-recaptcha-v5.php:276
+msgid "reCAPTCHA value is invalid or expired. Please try again."
+msgstr ""
+
+#: acf-recaptcha-v5.php:85
+msgid "Secret Key"
+msgstr ""
+
+#: includes/settings-page.php:59
+msgid "Secret key"
+msgstr ""
+
+#: includes/settings-page.php:99 includes/settings-page.php:165
+msgid "Settings"
+msgstr ""
+
+#: acf-recaptcha-v5.php:74
+msgid "Site Key"
+msgstr ""
+
+#: includes/settings-page.php:51
+msgid "Site key"
+msgstr ""
+
+#: acf-recaptcha-v5.php:118
+msgid "Size"
+msgstr ""
+
+#: acf-recaptcha-v5.php:297
+msgid "Switch on if this field group should be protected by reCAPTCHA."
+msgstr ""
+
+#: acf-recaptcha-v5.php:96
+msgid "Theme"
+msgstr ""
+
+#: includes/field-message.php:24
+msgid ""
+"To protect this field group from spam, you must turn on <strong>\"ACF "
+"reCAPTCHA Protection\"</strong> under the settings at the bottom of the page,"
+" and specify the field group ID explicitly in your frontend form code."
+msgstr ""
+
+#: acf-recaptcha-v5.php:107
+msgid "Type"
+msgstr ""
+
+#: acf-recaptcha-v5.php:236
+msgid "Verification expired. Please click the checkbox again."
+msgstr ""
